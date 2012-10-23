@@ -14,51 +14,63 @@ import javax.swing.*;
 /**
  * @author wibotwi
  */
-public class BatchConfigurationType implements ConfigurationType {
-    public String getDisplayName() {
-        return "Batch";
-    }
+public class BatchConfigurationType implements ConfigurationType
+{
+	public String getDisplayName()
+	{
+		return "Batch";
+	}
 
-    public String getConfigurationTypeDescription() {
-        return "Batch run configuration";
-    }
+	public String getConfigurationTypeDescription()
+	{
+		return "Batch run configuration";
+	}
 
-    public Icon getIcon() {
-        return BatchIcons.BATCH_FILE_ICON;
-    }
+	public Icon getIcon()
+	{
+		return BatchIcons.BATCH_FILE_ICON;
+	}
 
-    @NotNull
-    public String getId() {
-        return "BatchConfigurationType";
-    }
+	@NotNull
+	public String getId()
+	{
+		return "BatchConfigurationType";
+	}
 
-    public static BatchConfigurationType getInstance() {
-        ConfigurationType[] configurationTypes = Extensions.getExtensions(CONFIGURATION_TYPE_EP);
+	public static BatchConfigurationType getInstance()
+	{
+		ConfigurationType[] configurationTypes = Extensions.getExtensions(CONFIGURATION_TYPE_EP);
 
-        for (ConfigurationType configurationType : configurationTypes) {
-            if (configurationType instanceof BatchConfigurationType) {
-                return (BatchConfigurationType) configurationType;
-            }
-        }
+		for(ConfigurationType configurationType : configurationTypes)
+		{
+			if(configurationType instanceof BatchConfigurationType)
+			{
+				return (BatchConfigurationType) configurationType;
+			}
+		}
 
-        assert false;
+		assert false;
 
-        return null;
-    }
+		return null;
+	}
 
 
-    public ConfigurationFactory[] getConfigurationFactories() {
-        return new ConfigurationFactory[]{new BatchConfigurationFactory(this)};
-    }
+	public ConfigurationFactory[] getConfigurationFactories()
+	{
+		return new ConfigurationFactory[]{new BatchConfigurationFactory(this)};
+	}
 
-    private static class BatchConfigurationFactory extends ConfigurationFactory {
-        public BatchConfigurationFactory(BatchConfigurationType batchConfigurationType) {
-            super(batchConfigurationType);
-        }
+	private static class BatchConfigurationFactory extends ConfigurationFactory
+	{
+		public BatchConfigurationFactory(BatchConfigurationType batchConfigurationType)
+		{
+			super(batchConfigurationType);
+		}
 
-        @Override
-        public RunConfiguration createTemplateConfiguration(Project project) {
-            return new BatchRunConfiguration(new RunConfigurationModule(project), this, "");
-        }
-    }
+		@Override
+		public RunConfiguration createTemplateConfiguration(Project project)
+		{
+			return new BatchRunConfiguration(new RunConfigurationModule(project), this, "");
+		}
+	}
 }

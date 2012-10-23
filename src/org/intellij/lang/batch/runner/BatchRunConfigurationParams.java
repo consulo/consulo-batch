@@ -3,15 +3,16 @@ package org.intellij.lang.batch.runner;
 /**
  * @author wibotwi
  */
-public interface BatchRunConfigurationParams {
-    CommonBatchRunConfigurationParams getCommonParams();
+public interface BatchRunConfigurationParams
+{
+	CommonBatchRunConfigurationParams getCommonParams();
 
-    String getScriptName();
+	String getScriptName();
 
-    void setScriptName(String scriptName);
+	void setScriptName(String scriptName);
 
-    String getScriptParameters();
+	String getScriptParameters();
 
-    void setScriptParameters(String scriptParameters);
+	void setScriptParameters(String scriptParameters);
 
 }

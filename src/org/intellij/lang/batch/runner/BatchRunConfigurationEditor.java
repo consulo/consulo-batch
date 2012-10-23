@@ -9,32 +9,38 @@ import javax.swing.*;
 /**
  * @author wibotwi
  */
-public class BatchRunConfigurationEditor extends SettingsEditor<BatchRunConfiguration> {
+public class BatchRunConfigurationEditor extends SettingsEditor<BatchRunConfiguration>
+{
 
-    private BatchRunConfigurationForm myForm;
+	private BatchRunConfigurationForm myForm;
 
-    public BatchRunConfigurationEditor(BatchRunConfiguration batchRunConfiguration) {
-        this.myForm = new BatchRunConfigurationForm(batchRunConfiguration);
-    }
+	public BatchRunConfigurationEditor(BatchRunConfiguration batchRunConfiguration)
+	{
+		this.myForm = new BatchRunConfigurationForm(batchRunConfiguration);
+	}
 
-    @Override
-    protected void resetEditorFrom(BatchRunConfiguration runConfiguration) {
-        BatchRunConfiguration.copyParams(runConfiguration, myForm);
-    }
+	@Override
+	protected void resetEditorFrom(BatchRunConfiguration runConfiguration)
+	{
+		BatchRunConfiguration.copyParams(runConfiguration, myForm);
+	}
 
-    @Override
-    protected void applyEditorTo(BatchRunConfiguration runConfiguration) throws ConfigurationException {
-        BatchRunConfiguration.copyParams(myForm, runConfiguration);
-    }
+	@Override
+	protected void applyEditorTo(BatchRunConfiguration runConfiguration) throws ConfigurationException
+	{
+		BatchRunConfiguration.copyParams(myForm, runConfiguration);
+	}
 
-    @Override
-    @NotNull
-    protected JComponent createEditor() {
-        return myForm.getRootPanel();
-    }
+	@Override
+	@NotNull
+	protected JComponent createEditor()
+	{
+		return myForm.getRootPanel();
+	}
 
-    @Override
-    protected void disposeEditor() {
-        myForm = null;
-    }
+	@Override
+	protected void disposeEditor()
+	{
+		myForm = null;
+	}
 }

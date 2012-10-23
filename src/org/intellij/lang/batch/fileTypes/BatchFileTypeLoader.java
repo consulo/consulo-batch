@@ -1,17 +1,19 @@
 package org.intellij.lang.batch.fileTypes;
 
+import org.jetbrains.annotations.NotNull;
 import com.intellij.openapi.fileTypes.FileTypeConsumer;
 import com.intellij.openapi.fileTypes.FileTypeFactory;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * @author wibotwi
  */
-public class BatchFileTypeLoader extends FileTypeFactory {
+public class BatchFileTypeLoader extends FileTypeFactory
+{
 
-    @Override
-    public void createFileTypes(@NotNull FileTypeConsumer consumer) {
-        consumer.consume(BatchFileType.BATCH_FILE_TYPE, "bat");
-        consumer.consume(BatchFileType.BATCH_FILE_TYPE, "cmd");
-    }
+	@Override
+	public void createFileTypes(@NotNull FileTypeConsumer consumer)
+	{
+		for(String ext : BatchFileType.DEFAULT_ASSOCIATED_EXTENSIONS)
+			consumer.consume(BatchFileType.BATCH_FILE_TYPE, ext);
+	}
 }

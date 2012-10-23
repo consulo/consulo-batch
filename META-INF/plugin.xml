@@ -1,36 +1,32 @@
-<!DOCTYPE idea-plugin PUBLIC "Plugin/DTD" "http://plugins.intellij.net/plugin.dtd">
-<idea-plugin>
-    <name>Batch Scripts Support</name>
+<idea-plugin version="2">
+	<name>Batch Scripts Support</name>
 
-    <description>
-        Enables Windows Batch Scripts support in IntelliJ IDEA.
-    </description>
+	<description>
+		Enables Windows Batch Scripts support in IntelliJ IDEA.
+	</description>
 
-    <category>Custom Languages</category>
-    <version>1.0.3</version>
-    <vendor>Alexey Efimov</vendor>
-    <idea-version since-build="9100"/>
+	<category>Custom Languages</category>
+	<version>1.0.4</version>
+	<vendor>Alexey Efimov</vendor>
+	<idea-version since-build="122.000"/>
 
-    <resource-bundle>org.intellij.lang.batch.util.BatchBundle</resource-bundle>
+	<resource-bundle>org.intellij.lang.batch.util.BatchBundle</resource-bundle>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <fileTypeFactory implementation="org.intellij.lang.batch.fileTypes.BatchFileTypeLoader"/>
+	<extensions defaultExtensionNs="com.intellij">
+		<fileTypeFactory implementation="org.intellij.lang.batch.fileTypes.BatchFileTypeLoader"/>
 
-        <!--Syntax highlighting-->
-        <syntaxHighlighter key="Batch"
-                           implementationClass="org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter"/>
-        <colorSettingsPage
-                implementation="org.intellij.lang.batch.editor.colors.BatchColorPage"/>
+		<!--Syntax highlighting-->
+		<syntaxHighlighter key="Batch" implementationClass="org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter"/>
+		<colorSettingsPage implementation="org.intellij.lang.batch.editor.colors.BatchColorPage"/>
 
-        <!--Language extensions -->
-        <lang.commenter language="Batch"
-                        implementationClass="org.intellij.lang.batch.editor.BatchCommenter"/>
+		<!--Language extensions -->
+		<lang.commenter language="Batch" implementationClass="org.intellij.lang.batch.editor.BatchCommenter"/>
 
-        <!-- Run configuration-->
-        <configurationType implementation="org.intellij.lang.batch.runner.BatchConfigurationType"/>
-        <programRunner implementation="org.intellij.lang.batch.runner.BatchRunner"/>
-        <configurationProducer implementation="org.intellij.lang.batch.runner.BatchRunConfigurationProducer"/>
+		<!-- Run configuration-->
+		<configurationType implementation="org.intellij.lang.batch.runner.BatchConfigurationType"/>
+		<programRunner implementation="org.intellij.lang.batch.runner.BatchRunner"/>
+		<configurationProducer implementation="org.intellij.lang.batch.runner.BatchRunConfigurationProducer"/>
 
-    </extensions>
+	</extensions>
 
 </idea-plugin>

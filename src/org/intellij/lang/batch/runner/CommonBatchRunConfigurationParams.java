@@ -5,22 +5,23 @@ import java.util.Map;
 /**
  * @author wibotwi
  */
-public interface CommonBatchRunConfigurationParams {
+public interface CommonBatchRunConfigurationParams
+{
 
-    String getInterpreterOptions();
+	String getInterpreterOptions();
 
-    void setInterpreterOptions(String options);
+	void setInterpreterOptions(String options);
 
-    String getWorkingDirectory();
+	String getWorkingDirectory();
 
-    void setWorkingDirectory(String workingDirectory);
+	void setWorkingDirectory(String workingDirectory);
 
-    boolean isPassParentEnvs();
+	boolean isPassParentEnvs();
 
-    void setPassParentEnvs(boolean passParentEnvs);
+	void setPassParentEnvs(boolean passParentEnvs);
 
-    Map<String, String> getEnvs();
+	Map<String, String> getEnvs();
 
-    void setEnvs(Map<String, String> envs);
+	void setEnvs(Map<String, String> envs);
 
 }
