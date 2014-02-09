@@ -13,7 +13,6 @@ public class BatchFileTypeFactory extends FileTypeFactory
 	@Override
 	public void createFileTypes(@NotNull FileTypeConsumer consumer)
 	{
-		for(String ext : BatchFileType.DEFAULT_ASSOCIATED_EXTENSIONS)
-			consumer.consume(BatchFileType.BATCH_FILE_TYPE, ext);
+		consumer.consume(BatchFileType.INSTANCE, "bat;cmd");
 	}
 }

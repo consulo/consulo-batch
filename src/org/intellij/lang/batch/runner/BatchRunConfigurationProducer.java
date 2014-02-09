@@ -33,7 +33,7 @@ public class BatchRunConfigurationProducer extends RuntimeConfigurationProducer 
 	protected RunnerAndConfigurationSettings createConfigurationByElement(Location location, ConfigurationContext configurationContext)
 	{
 		sourceFile = location.getPsiElement().getContainingFile();
-		if(sourceFile != null && sourceFile.getFileType() == BatchFileType.BATCH_FILE_TYPE)
+		if(sourceFile != null && sourceFile.getFileType() == BatchFileType.INSTANCE)
 		{
 			Project project = sourceFile.getProject();
 			RunnerAndConfigurationSettings settings = cloneTemplateConfiguration(project, configurationContext);
