@@ -1,19 +1,14 @@
 <idea-plugin version="2">
 	<name>Batch Scripts Support</name>
-
-	<description>
-		Enables Windows Batch Scripts support in IntelliJ IDEA.
-	</description>
-
 	<category>Custom Languages</category>
-	<version>1.0.4</version>
+	<version>SNAPSHOT</version>
 	<vendor>Alexey Efimov</vendor>
 	<idea-version since-build="122.000"/>
 
 	<resource-bundle>org.intellij.lang.batch.util.BatchBundle</resource-bundle>
 
 	<extensions defaultExtensionNs="com.intellij">
-		<fileTypeFactory implementation="org.intellij.lang.batch.fileTypes.BatchFileTypeLoader"/>
+		<fileTypeFactory implementation="org.intellij.lang.batch.fileTypes.BatchFileTypeFactory"/>
 
 		<!--Syntax highlighting-->
 		<syntaxHighlighter key="Batch" implementationClass="org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter"/>

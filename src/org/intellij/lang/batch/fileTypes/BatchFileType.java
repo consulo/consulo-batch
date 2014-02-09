@@ -30,9 +30,10 @@ public final class BatchFileType extends LanguageFileType
 
 	public BatchFileType()
 	{
-		super(new BatchLanguage());
+		super(BatchLanguage.INSTANCE);
 	}
 
+	@Override
 	@NotNull
 	@NonNls
 	public String getDefaultExtension()
@@ -40,18 +41,21 @@ public final class BatchFileType extends LanguageFileType
 		return DEFAULT_ASSOCIATED_EXTENSIONS[0];
 	}
 
+	@Override
 	@NotNull
 	public String getDescription()
 	{
 		return BatchBundle.message("batch.filetype.description");
 	}
 
+	@Override
 	@Nullable
 	public Icon getIcon()
 	{
 		return BatchIcons.BATCH_FILE_ICON;
 	}
 
+	@Override
 	@NotNull
 	@NonNls
 	public String getName()
