@@ -65,4 +65,8 @@ public interface BatchTokenTypes
 	TokenSet BRACKETS = TokenSet.create(LEFT_BRACKET, RIGHT_BRACKET);
 
 	TokenSet PARENTHESES = TokenSet.create(LEFT_PARENTHESIS, RIGHT_PARENTHESIS);
+
+	TokenSet WHITE_SPACES = TokenSet.create(WHITE_SPACE);
+	TokenSet COMMENTS = TokenSet.create(COMMENT);
+	TokenSet STRINGS = TokenSet.create(STRING_LITERAL);
 }

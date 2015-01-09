@@ -9,5 +9,5 @@ import com.intellij.openapi.util.IconLoader;
  */
 public interface BatchIcons
 {
-	Icon BATCH_FILE_ICON = IconLoader.getIcon("/fileTypes/batch.png");
+	Icon Batch = IconLoader.getIcon("/fileTypes/batch.png");
 }

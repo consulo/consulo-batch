@@ -1,9 +1,26 @@
 package org.intellij.lang.batch.runner;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.intellij.lang.batch.util.BatchBundle;
+import org.jdom.Element;
+import org.jetbrains.annotations.NotNull;
+import com.intellij.compiler.options.CompileStepBeforeRun;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.Executor;
 import com.intellij.execution.configuration.EnvironmentVariablesComponent;
-import com.intellij.execution.configurations.*;
+import com.intellij.execution.configurations.ConfigurationFactory;
+import com.intellij.execution.configurations.ModuleBasedConfiguration;
+import com.intellij.execution.configurations.RunConfiguration;
+import com.intellij.execution.configurations.RunConfigurationModule;
+import com.intellij.execution.configurations.RunProfileState;
+import com.intellij.execution.configurations.RuntimeConfigurationException;
 import com.intellij.execution.filters.TextConsoleBuilderFactory;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.openapi.module.Module;
@@ -14,17 +31,12 @@ import com.intellij.openapi.util.InvalidDataException;
 import com.intellij.openapi.util.JDOMExternalizerUtil;
 import com.intellij.openapi.util.WriteExternalException;
 import com.intellij.openapi.util.text.StringUtil;
-import org.intellij.lang.batch.util.BatchBundle;
-import org.jdom.Element;
-import org.jetbrains.annotations.NotNull;
-
-import java.io.File;
-import java.util.*;
 
 /**
  * @author wibotwi
  */
-public class BatchRunConfiguration extends ModuleBasedConfiguration<RunConfigurationModule> implements CommonBatchRunConfigurationParams, BatchRunConfigurationParams
+public class BatchRunConfiguration extends ModuleBasedConfiguration<RunConfigurationModule> implements CommonBatchRunConfigurationParams,
+		BatchRunConfigurationParams, CompileStepBeforeRun.Suppressor
 {
 
 	// common config
@@ -37,7 +49,7 @@ public class BatchRunConfiguration extends ModuleBasedConfiguration<RunConfigura
 	private String scriptName;
 	private String scriptParameters;
 
-	protected BatchRunConfiguration(RunConfigurationModule runConfigurationModule, ConfigurationFactory batchConfigurationFactory, String name)
+	public BatchRunConfiguration(RunConfigurationModule runConfigurationModule, ConfigurationFactory batchConfigurationFactory, String name)
 	{
 		super(name, runConfigurationModule, batchConfigurationFactory);
 	}
@@ -57,11 +69,13 @@ public class BatchRunConfiguration extends ModuleBasedConfiguration<RunConfigura
 		return new BatchRunConfiguration(getConfigurationModule(), getFactory(), getName());
 	}
 
+	@Override
 	public SettingsEditor<? extends RunConfiguration> getConfigurationEditor()
 	{
 		return new BatchRunConfigurationEditor(this);
 	}
 
+	@Override
 	public RunProfileState getState(@NotNull Executor executor, @NotNull ExecutionEnvironment env) throws ExecutionException
 	{
 		BatchCommandLineState state = new BatchCommandLineState(this, env);
@@ -160,66 +174,79 @@ public class BatchRunConfiguration extends ModuleBasedConfiguration<RunConfigura
 		to.setScriptParameters(from.getScriptParameters());
 	}
 
+	@Override
 	public String getInterpreterOptions()
 	{
 		return interpreterOptions;
 	}
 
+	@Override
 	public void setInterpreterOptions(String interpreterOptions)
 	{
 		this.interpreterOptions = interpreterOptions;
 	}
 
+	@Override
 	public String getWorkingDirectory()
 	{
 		return workingDirectory;
 	}
 
+	@Override
 	public void setWorkingDirectory(String workingDirectory)
 	{
 		this.workingDirectory = workingDirectory;
 	}
 
+	@Override
 	public boolean isPassParentEnvs()
 	{
 		return passParentEnvs;
 	}
 
+	@Override
 	public void setPassParentEnvs(boolean passParentEnvs)
 	{
 		this.passParentEnvs = passParentEnvs;
 	}
 
+	@Override
 	public Map<String, String> getEnvs()
 	{
 		return envs;
 	}
 
+	@Override
 	public void setEnvs(Map<String, String> envs)
 	{
 		this.envs = envs;
 	}
 
+	@Override
 	public CommonBatchRunConfigurationParams getCommonParams()
 	{
 		return this;
 	}
 
+	@Override
 	public String getScriptName()
 	{
 		return scriptName;
 	}
 
+	@Override
 	public void setScriptName(String scriptName)
 	{
 		this.scriptName = scriptName;
 	}
 
+	@Override
 	public String getScriptParameters()
 	{
 		return scriptParameters;
 	}
 
+	@Override
 	public void setScriptParameters(String scriptParameters)
 	{
 		this.scriptParameters = scriptParameters;

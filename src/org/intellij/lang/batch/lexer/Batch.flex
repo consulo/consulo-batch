@@ -6,6 +6,7 @@ import org.intellij.lang.batch.BatchTokenTypes;
 
 %%
 
+%public
 %class _BatchLexer
 %implements FlexLexer
 %final

@@ -118,7 +118,7 @@ final class BatchColorPage implements ColorSettingsPage
 	@Nullable
 	public Icon getIcon()
 	{
-		return BatchIcons.BATCH_FILE_ICON;
+		return BatchIcons.Batch;
 	}
 
 }

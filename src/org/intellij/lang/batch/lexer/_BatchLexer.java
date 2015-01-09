@@ -2,9 +2,9 @@
 
 package org.intellij.lang.batch.lexer;
 
+import org.intellij.lang.batch.BatchTokenTypes;
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
-import org.intellij.lang.batch.BatchTokenTypes;
 
 
 /**
@@ -13,7 +13,7 @@ import org.intellij.lang.batch.BatchTokenTypes;
  * on 23.10.12 20:34 from the specification file
  * <tt>F:/github.com/VISTALL/idea-batch/src/org/intellij/lang/batch/lexer/Batch.flex</tt>
  */
-final class _BatchLexer implements FlexLexer {
+public final class _BatchLexer implements FlexLexer {
   /** initial size of the lookahead buffer */
   private static final int ZZ_BUFFERSIZE = 16384;
 
@@ -404,7 +404,7 @@ final class _BatchLexer implements FlexLexer {
   private boolean zzEOFDone;
 
 
-  _BatchLexer(java.io.Reader in) {
+  public _BatchLexer(java.io.Reader in) {
     this.zzReader = in;
   }
 
@@ -414,7 +414,7 @@ final class _BatchLexer implements FlexLexer {
    *
    * @param   in  the java.io.Inputstream to read input from.
    */
-  _BatchLexer(java.io.InputStream in) {
+  public _BatchLexer(java.io.InputStream in) {
     this(new java.io.InputStreamReader(in));
   }
 

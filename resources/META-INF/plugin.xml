@@ -2,10 +2,9 @@
 	<name>Batch Scripts Support</name>
 	<category>Custom Languages</category>
 	<version>SNAPSHOT</version>
-	<vendor>Alexey Efimov</vendor>
-	<idea-version since-build="122.000"/>
+	<vendor>Alexey Efimov &amp; must-be.org</vendor>
 
-	<resource-bundle>org.intellij.lang.batch.util.BatchBundle</resource-bundle>
+	<resource-bundle>messages.BatchBundle</resource-bundle>
 
 	<extensions defaultExtensionNs="com.intellij">
 		<fileTypeFactory implementation="org.intellij.lang.batch.fileTypes.BatchFileTypeFactory"/>
@@ -16,12 +15,11 @@
 
 		<!--Language extensions -->
 		<lang.commenter language="Batch" implementationClass="org.intellij.lang.batch.editor.BatchCommenter"/>
+		<lang.parserDefinition language="Batch" implementationClass="org.mustbe.consulo.batch.psi.BatchParsingDefinition"/>
 
 		<!-- Run configuration-->
-		<configurationType implementation="org.intellij.lang.batch.runner.BatchConfigurationType"/>
+		<configurationType implementation="org.mustbe.consulo.batch.run.BatchConfigurationType"/>
 		<programRunner implementation="org.intellij.lang.batch.runner.BatchRunner"/>
-		<configurationProducer implementation="org.intellij.lang.batch.runner.BatchRunConfigurationProducer"/>
-
+		<runConfigurationProducer implementation="org.mustbe.consulo.batch.run.BatchRunConfigurationProducer"/>
 	</extensions>
-
 </idea-plugin>
