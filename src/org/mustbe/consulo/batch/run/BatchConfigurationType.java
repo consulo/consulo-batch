@@ -16,7 +16,6 @@
 
 package org.mustbe.consulo.batch.run;
 
-import org.consulo.lombok.annotations.LazyInstance;
 import org.intellij.lang.batch.runner.BatchRunConfiguration;
 import org.intellij.lang.batch.util.BatchIcons;
 import org.jetbrains.annotations.NotNull;
@@ -25,6 +24,7 @@ import com.intellij.execution.configurations.ConfigurationTypeBase;
 import com.intellij.execution.configurations.RunConfiguration;
 import com.intellij.execution.configurations.RunConfigurationModule;
 import com.intellij.openapi.project.Project;
+import consulo.lombok.annotations.Lazy;
 
 /**
  * @author VISTALL
@@ -46,7 +46,7 @@ public class BatchConfigurationType extends ConfigurationTypeBase
 	}
 
 	@NotNull
-	@LazyInstance
+	@Lazy
 	public static BatchConfigurationType getInstance()
 	{
 		return CONFIGURATION_TYPE_EP.findExtension(BatchConfigurationType.class);
