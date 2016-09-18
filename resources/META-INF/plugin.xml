@@ -1,8 +1,9 @@
-<idea-plugin version="2">
+<idea-plugin>
+	<id>consulo.batch</id>
 	<name>Batch Scripts Support</name>
 	<category>Custom Languages</category>
 	<version>SNAPSHOT</version>
-	<vendor>Alexey Efimov &amp; must-be.org</vendor>
+	<vendor>Alexey Efimov &amp; consulo.io</vendor>
 
 	<resource-bundle>messages.BatchBundle</resource-bundle>
 
@@ -15,11 +16,11 @@
 
 		<!--Language extensions -->
 		<lang.commenter language="Batch" implementationClass="org.intellij.lang.batch.editor.BatchCommenter"/>
-		<lang.parserDefinition language="Batch" implementationClass="org.mustbe.consulo.batch.psi.BatchParsingDefinition"/>
+		<lang.parserDefinition language="Batch" implementationClass="consulo.batch.psi.BatchParsingDefinition"/>
 
 		<!-- Run configuration-->
-		<configurationType implementation="org.mustbe.consulo.batch.run.BatchConfigurationType"/>
+		<configurationType implementation="consulo.batch.run.BatchConfigurationType"/>
 		<programRunner implementation="org.intellij.lang.batch.runner.BatchRunner"/>
-		<runConfigurationProducer implementation="org.mustbe.consulo.batch.run.BatchRunConfigurationProducer"/>
+		<runConfigurationProducer implementation="consulo.batch.run.BatchRunConfigurationProducer"/>
 	</extensions>
 </idea-plugin>
