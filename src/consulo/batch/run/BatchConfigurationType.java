@@ -24,7 +24,6 @@ import com.intellij.execution.configurations.ConfigurationTypeBase;
 import com.intellij.execution.configurations.RunConfiguration;
 import com.intellij.execution.configurations.RunConfigurationModule;
 import com.intellij.openapi.project.Project;
-import consulo.lombok.annotations.Lazy;
 
 /**
  * @author VISTALL
@@ -46,7 +45,6 @@ public class BatchConfigurationType extends ConfigurationTypeBase
 	}
 
 	@NotNull
-	@Lazy
 	public static BatchConfigurationType getInstance()
 	{
 		return CONFIGURATION_TYPE_EP.findExtension(BatchConfigurationType.class);
