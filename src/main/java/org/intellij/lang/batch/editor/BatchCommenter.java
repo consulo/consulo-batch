@@ -12,7 +12,6 @@ import com.intellij.psi.tree.IElementType;
 public class BatchCommenter implements CodeDocumentationAwareCommenter
 {
 
-
 	@Override
 	public IElementType getLineCommentTokenType()
 	{
