@@ -1,7 +1,8 @@
 package org.intellij.lang.batch;
 
+import javax.annotation.Nonnull;
+
 import org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter;
-import org.jetbrains.annotations.NotNull;
 import com.intellij.lang.Language;
 import com.intellij.openapi.fileTypes.SingleLazyInstanceSyntaxHighlighterFactory;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
@@ -25,7 +26,7 @@ public class BatchLanguage extends Language
 	private static class BatchHighlighterFactory extends SingleLazyInstanceSyntaxHighlighterFactory
 	{
 		@Override
-		@NotNull
+		@Nonnull
 		protected SyntaxHighlighter createHighlighter()
 		{
 			return new BatchSyntaxHighlighter();

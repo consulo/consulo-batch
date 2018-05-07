@@ -7,7 +7,7 @@ import com.intellij.psi.tree.IElementType;
 import org.intellij.lang.batch.BatchTokenTypes;
 import org.intellij.lang.batch.editor.BatchHighlighterColors;
 import org.intellij.lang.batch.lexer.BatchHighlighterLexer;
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,13 +50,13 @@ public final class BatchSyntaxHighlighter extends SyntaxHighlighterBase
 		fillMap(colors, BatchTokenTypes.KEYWORDS, BatchHighlighterColors.KEYWORD);
 	}
 
-	@NotNull
+	@Nonnull
 	public Lexer getHighlightingLexer()
 	{
 		return lexer;
 	}
 
-	@NotNull
+	@Nonnull
 	public TextAttributesKey[] getTokenHighlights(IElementType tokenType)
 	{
 		return pack(getAttributeKeys(tokenType, backgrounds), getAttributeKeys(tokenType, colors));

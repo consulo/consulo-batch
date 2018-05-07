@@ -8,9 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+
 import org.intellij.lang.batch.util.BatchBundle;
 import org.jdom.Element;
-import org.jetbrains.annotations.NotNull;
 import com.intellij.compiler.options.CompileStepBeforeRun;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.Executor;
@@ -76,7 +77,7 @@ public class BatchRunConfiguration extends ModuleBasedConfiguration<RunConfigura
 	}
 
 	@Override
-	public RunProfileState getState(@NotNull Executor executor, @NotNull ExecutionEnvironment env) throws ExecutionException
+	public RunProfileState getState(@Nonnull Executor executor, @Nonnull ExecutionEnvironment env) throws ExecutionException
 	{
 		BatchCommandLineState state = new BatchCommandLineState(this, env);
 		state.setConsoleBuilder(TextConsoleBuilderFactory.getInstance().createBuilder(getProject()));

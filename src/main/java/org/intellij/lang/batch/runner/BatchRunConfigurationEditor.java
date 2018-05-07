@@ -2,7 +2,7 @@ package org.intellij.lang.batch.runner;
 
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SettingsEditor;
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 
 import javax.swing.*;
 
@@ -32,7 +32,7 @@ public class BatchRunConfigurationEditor extends SettingsEditor<BatchRunConfigur
 	}
 
 	@Override
-	@NotNull
+	@Nonnull
 	protected JComponent createEditor()
 	{
 		return myForm.getRootPanel();

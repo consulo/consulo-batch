@@ -1,13 +1,13 @@
 package org.intellij.lang.batch.fileTypes;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.swing.Icon;
 
 import org.intellij.lang.batch.BatchLanguage;
 import org.intellij.lang.batch.util.BatchBundle;
 import org.intellij.lang.batch.util.BatchIcons;
 import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import com.intellij.openapi.fileTypes.LanguageFileType;
 
 /**
@@ -25,7 +25,7 @@ public final class BatchFileType extends LanguageFileType
 	}
 
 	@Override
-	@NotNull
+	@Nonnull
 	@NonNls
 	public String getDefaultExtension()
 	{
@@ -33,7 +33,7 @@ public final class BatchFileType extends LanguageFileType
 	}
 
 	@Override
-	@NotNull
+	@Nonnull
 	public String getDescription()
 	{
 		return BatchBundle.message("batch.filetype.description");
@@ -47,9 +47,9 @@ public final class BatchFileType extends LanguageFileType
 	}
 
 	@Override
-	@NotNull
+	@Nonnull
 	@NonNls
-	public String getName()
+	public String getId()
 	{
 		return "Batch";
 	}

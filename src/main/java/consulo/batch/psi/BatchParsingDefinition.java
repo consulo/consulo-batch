@@ -16,10 +16,11 @@
 
 package consulo.batch.psi;
 
+import javax.annotation.Nonnull;
+
 import org.intellij.lang.batch.BatchLanguage;
 import org.intellij.lang.batch.BatchTokenTypes;
 import org.intellij.lang.batch.lexer._BatchLexer;
-import org.jetbrains.annotations.NotNull;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.ParserDefinition;
@@ -43,22 +44,22 @@ public class BatchParsingDefinition implements ParserDefinition
 {
 	private static final IFileElementType FILE_ELEMENT_TYPE = new IFileElementType("BATCH_FILE", BatchLanguage.INSTANCE);
 
-	@NotNull
+	@Nonnull
 	@Override
-	public Lexer createLexer(@NotNull LanguageVersion languageVersion)
+	public Lexer createLexer(@Nonnull LanguageVersion languageVersion)
 	{
 		return new FlexAdapter(new _BatchLexer((java.io.Reader) null));
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
-	public PsiParser createParser(@NotNull LanguageVersion languageVersion)
+	public PsiParser createParser(@Nonnull LanguageVersion languageVersion)
 	{
 		return new PsiParser()
 		{
-			@NotNull
+			@Nonnull
 			@Override
-			public ASTNode parse(@NotNull IElementType root, @NotNull PsiBuilder builder, @NotNull LanguageVersion languageVersion)
+			public ASTNode parse(@Nonnull IElementType root, @Nonnull PsiBuilder builder, @Nonnull LanguageVersion languageVersion)
 			{
 				PsiBuilder.Marker mark = builder.mark();
 				while(!builder.eof())
@@ -71,35 +72,35 @@ public class BatchParsingDefinition implements ParserDefinition
 		};
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public IFileElementType getFileNodeType()
 	{
 		return FILE_ELEMENT_TYPE;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
-	public TokenSet getWhitespaceTokens(@NotNull LanguageVersion languageVersion)
+	public TokenSet getWhitespaceTokens(@Nonnull LanguageVersion languageVersion)
 	{
 		return BatchTokenTypes.WHITE_SPACES;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
-	public TokenSet getCommentTokens(@NotNull LanguageVersion languageVersion)
+	public TokenSet getCommentTokens(@Nonnull LanguageVersion languageVersion)
 	{
 		return BatchTokenTypes.COMMENTS;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
-	public TokenSet getStringLiteralElements(@NotNull LanguageVersion languageVersion)
+	public TokenSet getStringLiteralElements(@Nonnull LanguageVersion languageVersion)
 	{
 		return BatchTokenTypes.STRINGS;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public PsiElement createElement(ASTNode node)
 	{
@@ -112,7 +113,7 @@ public class BatchParsingDefinition implements ParserDefinition
 		return new BatchFile(viewProvider);
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public SpaceRequirements spaceExistanceTypeBetweenTokens(ASTNode left, ASTNode right)
 	{

@@ -8,14 +8,14 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.swing.Icon;
 
 import org.intellij.lang.batch.editor.BatchHighlighterColors;
 import org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter;
 import org.intellij.lang.batch.util.BatchIcons;
 import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
@@ -58,20 +58,20 @@ final class BatchColorPage implements ColorSettingsPage
 		return null;
 	}
 
-	@NotNull
+	@Nonnull
 	public AttributesDescriptor[] getAttributeDescriptors()
 	{
 		return attributeDescriptors.toArray(new AttributesDescriptor[attributeDescriptors.size()]);
 	}
 
-	@NotNull
+	@Nonnull
 	public ColorDescriptor[] getColorDescriptors()
 	{
 		return EMPTY_COLOR_DESCRIPTOR_ARRAY;
 	}
 
 	@NonNls
-	@NotNull
+	@Nonnull
 	public String getDemoText()
 	{
 		return SAMPLE;
@@ -103,13 +103,13 @@ final class BatchColorPage implements ColorSettingsPage
 		return "";
 	}
 
-	@NotNull
+	@Nonnull
 	public String getDisplayName()
 	{
 		return "Batch Script";
 	}
 
-	@NotNull
+	@Nonnull
 	public SyntaxHighlighter getHighlighter()
 	{
 		return new BatchSyntaxHighlighter();

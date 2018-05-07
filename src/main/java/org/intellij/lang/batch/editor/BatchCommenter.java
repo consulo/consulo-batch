@@ -1,7 +1,7 @@
 package org.intellij.lang.batch.editor;
 
 import org.intellij.lang.batch.BatchTokenTypes;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
 import com.intellij.lang.CodeDocumentationAwareCommenter;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.tree.IElementType;

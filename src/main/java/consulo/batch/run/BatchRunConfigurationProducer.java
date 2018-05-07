@@ -18,7 +18,7 @@ package consulo.batch.run;
 
 import org.intellij.lang.batch.fileTypes.BatchFileType;
 import org.intellij.lang.batch.runner.BatchRunConfiguration;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
 import com.intellij.execution.actions.ConfigurationContext;
 import com.intellij.execution.actions.RunConfigurationProducer;
 import com.intellij.openapi.fileTypes.FileType;

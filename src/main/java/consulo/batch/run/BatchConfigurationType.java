@@ -16,9 +16,10 @@
 
 package consulo.batch.run;
 
+import javax.annotation.Nonnull;
+
 import org.intellij.lang.batch.runner.BatchRunConfiguration;
 import org.intellij.lang.batch.util.BatchIcons;
-import org.jetbrains.annotations.NotNull;
 import com.intellij.execution.configurations.ConfigurationFactory;
 import com.intellij.execution.configurations.ConfigurationTypeBase;
 import com.intellij.execution.configurations.RunConfiguration;
@@ -44,7 +45,7 @@ public class BatchConfigurationType extends ConfigurationTypeBase
 		}
 	}
 
-	@NotNull
+	@Nonnull
 	public static BatchConfigurationType getInstance()
 	{
 		return CONFIGURATION_TYPE_EP.findExtension(BatchConfigurationType.class);
