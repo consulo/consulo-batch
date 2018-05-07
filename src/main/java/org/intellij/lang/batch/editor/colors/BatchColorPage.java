@@ -10,11 +10,9 @@ import java.util.Set;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.Icon;
 
 import org.intellij.lang.batch.editor.BatchHighlighterColors;
 import org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter;
-import org.intellij.lang.batch.util.BatchIcons;
 import org.jetbrains.annotations.NonNls;
 import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
@@ -114,11 +112,4 @@ final class BatchColorPage implements ColorSettingsPage
 	{
 		return new BatchSyntaxHighlighter();
 	}
-
-	@Nullable
-	public Icon getIcon()
-	{
-		return BatchIcons.Batch;
-	}
-
 }

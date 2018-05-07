@@ -1,13 +1,12 @@
 package org.intellij.lang.batch.util;
 
-import javax.swing.Icon;
-
 import com.intellij.openapi.util.IconLoader;
+import consulo.ui.image.Image;
 
 /**
  * @author wibotwi
  */
 public interface BatchIcons
 {
-	Icon Batch = IconLoader.getIcon("/fileTypes/batch.png");
+	Image Batch = IconLoader.getIcon("/fileTypes/batch.png");
 }

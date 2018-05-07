@@ -9,6 +9,7 @@ import org.intellij.lang.batch.util.BatchBundle;
 import org.intellij.lang.batch.util.BatchIcons;
 import org.jetbrains.annotations.NonNls;
 import com.intellij.openapi.fileTypes.LanguageFileType;
+import consulo.ui.image.Image;
 
 /**
  * Batch file type.
@@ -41,7 +42,7 @@ public final class BatchFileType extends LanguageFileType
 
 	@Override
 	@Nullable
-	public Icon getIcon()
+	public Image getIcon()
 	{
 		return BatchIcons.Batch;
 	}
