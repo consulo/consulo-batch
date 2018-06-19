@@ -26,7 +26,6 @@ import com.intellij.lang.ASTNode;
 import com.intellij.lang.ParserDefinition;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiParser;
-import com.intellij.lexer.FlexAdapter;
 import com.intellij.lexer.Lexer;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiElement;
@@ -48,7 +47,7 @@ public class BatchParsingDefinition implements ParserDefinition
 	@Override
 	public Lexer createLexer(@Nonnull LanguageVersion languageVersion)
 	{
-		return new FlexAdapter(new _BatchLexer((java.io.Reader) null));
+		return new _BatchLexer();
 	}
 
 	@Nonnull

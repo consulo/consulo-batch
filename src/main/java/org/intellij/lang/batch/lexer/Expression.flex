@@ -1,17 +1,17 @@
 package org.intellij.lang.batch.lexer;
 
-import com.intellij.lexer.FlexLexer;
+import com.intellij.lexer.LexerBase;
 import com.intellij.psi.tree.IElementType;
 import org.intellij.lang.batch.BatchTokenTypes;
 
 %%
 
 %class _ExpressionLexer
-%implements FlexLexer
+%extends LexerBase
 %final
 %ignorecase
 %unicode
-%function advance
+%function advanceImpl
 %type IElementType
 %eof{ return;
 %eof}
