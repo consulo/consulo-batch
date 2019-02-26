@@ -22,5 +22,6 @@
 		<configurationType implementation="consulo.batch.run.BatchConfigurationType"/>
 		<programRunner implementation="org.intellij.lang.batch.runner.BatchRunner"/>
 		<runConfigurationProducer implementation="consulo.batch.run.BatchRunConfigurationProducer"/>
+		<lang.syntaxHighlighterFactory language="Batch" implementationClass="org.intellij.lang.batch.BatchHighlighterFactory" />
 	</extensions>
 </idea-plugin>
