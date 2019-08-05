@@ -1,20 +1,5 @@
 package org.intellij.lang.batch.editor.colors;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.intellij.lang.batch.editor.BatchHighlighterColors;
-import org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter;
-import org.jetbrains.annotations.NonNls;
-import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
@@ -22,13 +7,21 @@ import com.intellij.openapi.options.colors.AttributesDescriptor;
 import com.intellij.openapi.options.colors.ColorDescriptor;
 import com.intellij.openapi.options.colors.ColorSettingsPage;
 import com.intellij.openapi.util.io.FileUtil;
-import sun.reflect.Reflection;
+import org.intellij.lang.batch.editor.BatchHighlighterColors;
+import org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter;
+import org.jetbrains.annotations.NonNls;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 final class BatchColorPage implements ColorSettingsPage
 {
-	private static final ColorDescriptor[] EMPTY_COLOR_DESCRIPTOR_ARRAY = new ColorDescriptor[]{};
 	@NonNls
-	private static final String SAMPLE = extractIdeaScript();
+	private static final String SAMPLE = loadDemo();
 
 	private final Set<AttributesDescriptor> attributeDescriptors = new HashSet<AttributesDescriptor>();
 
@@ -65,7 +58,7 @@ final class BatchColorPage implements ColorSettingsPage
 	@Nonnull
 	public ColorDescriptor[] getColorDescriptors()
 	{
-		return EMPTY_COLOR_DESCRIPTOR_ARRAY;
+		return ColorDescriptor.EMPTY_ARRAY;
 	}
 
 	@NonNls
@@ -75,24 +68,11 @@ final class BatchColorPage implements ColorSettingsPage
 		return SAMPLE;
 	}
 
-	private static String extractIdeaScript()
+	private static String loadDemo()
 	{
-		String binPath = PathManager.getBinPath();
 		try
 		{
-			File file = new File(binPath, "idea.bat");
-
-			InputStreamReader streamReader;
-			if(file.exists())
-			{
-				streamReader = new InputStreamReader(new FileInputStream(file));
-			}
-			else
-			{
-				streamReader = new InputStreamReader(Reflection.getCallerClass(1).getResourceAsStream("/examples/demo.bat"));
-			}
-
-			return FileUtil.loadTextAndClose(streamReader).replaceAll("\\r", "");
+			return FileUtil.loadTextAndClose(BatchColorPage.class.getResourceAsStream("/examples/demo.bat")).replaceAll("\\r", "");
 		}
 		catch(IOException e)
 		{
