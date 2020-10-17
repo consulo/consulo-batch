@@ -1,4 +1,4 @@
-<idea-plugin>
+<consulo-plugin>
 	<id>consulo.batch</id>
 	<name>Batch Scripts Support</name>
 	<category>Custom Languages</category>
@@ -24,4 +24,4 @@
 		<runConfigurationProducer implementation="consulo.batch.run.BatchRunConfigurationProducer"/>
 		<lang.syntaxHighlighterFactory language="Batch" implementationClass="org.intellij.lang.batch.BatchHighlighterFactory" />
 	</extensions>
-</idea-plugin>
+</consulo-plugin>
