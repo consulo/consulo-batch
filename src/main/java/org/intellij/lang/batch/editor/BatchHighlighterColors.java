@@ -1,12 +1,13 @@
 package org.intellij.lang.batch.editor;
 
-import java.awt.Color;
-import java.awt.Font;
-
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.HighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.editor.markup.TextAttributes;
+import consulo.ui.color.RGBColor;
+import consulo.ui.style.StandardColors;
+
+import java.awt.*;
 
 /**
  * Batch highlighter colors.
@@ -17,17 +18,17 @@ public interface BatchHighlighterColors
 {
 	TextAttributesKey COMMENT = TextAttributesKey.createTextAttributesKey("BATCH.COMMENT", DefaultLanguageHighlighterColors.BLOCK_COMMENT);
 	TextAttributesKey STRING = TextAttributesKey.createTextAttributesKey("BATCH.STRING", DefaultLanguageHighlighterColors.STRING);
-	TextAttributesKey VARIABLE = TextAttributesKey.createTextAttributesKey("BATCH.VARIABLE", new TextAttributes(new Color(0, 0, 0xff), null, null,
+	TextAttributesKey VARIABLE = TextAttributesKey.createTextAttributesKey("BATCH.VARIABLE", new TextAttributes(StandardColors.BLUE, null, null,
 			null, Font.BOLD | Font.ITALIC));
 	TextAttributesKey ENVIRONMENT_VARIABLE = TextAttributesKey.createTextAttributesKey("BATCH.ENVIRONMENT_VARIABLE",
 			DefaultLanguageHighlighterColors.STATIC_FIELD);
 	TextAttributesKey ENVIRONMENT_VARIABLE_DEFINITION = TextAttributesKey.createTextAttributesKey("BATCH.ENVIRONMENT_VARIABLE_DEFINITION",
 			DefaultLanguageHighlighterColors.STATIC_FIELD);
-	TextAttributesKey LABEL = TextAttributesKey.createTextAttributesKey("BATCH.LABEL", new TextAttributes(new Color(0x80, 0x80, 0), null, null,
+	TextAttributesKey LABEL = TextAttributesKey.createTextAttributesKey("BATCH.LABEL", new TextAttributes(new RGBColor(0x80, 0x80, 0), null, null,
 			null, Font.BOLD));
-	TextAttributesKey LABEL_REFERENCE = TextAttributesKey.createTextAttributesKey("BATCH.LABEL_REFERENCE", new TextAttributes(new Color(0x80, 0x80,
+	TextAttributesKey LABEL_REFERENCE = TextAttributesKey.createTextAttributesKey("BATCH.LABEL_REFERENCE", new TextAttributes(new RGBColor(0x80, 0x80,
 			0), null, null, null, Font.BOLD | Font.ITALIC));
-	TextAttributesKey EXPRESSION = TextAttributesKey.createTextAttributesKey("BATCH.EXPRESSION", new TextAttributes(new Color(0, 0, 0x80), null,
+	TextAttributesKey EXPRESSION = TextAttributesKey.createTextAttributesKey("BATCH.EXPRESSION", new TextAttributes(new RGBColor(0, 0, 0x80), null,
 			null, null, 0));
 	TextAttributesKey NUMBER = TextAttributesKey.createTextAttributesKey("BATCH.NUMBER", DefaultLanguageHighlighterColors.NUMBER);
 	TextAttributesKey OPERATION_SIGN = TextAttributesKey.createTextAttributesKey("BATCH.OPERATION_SIGN",
