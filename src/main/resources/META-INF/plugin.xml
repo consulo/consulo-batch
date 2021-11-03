@@ -5,6 +5,10 @@
 	<version>SNAPSHOT</version>
 	<vendor>Alexey Efimov &amp; consulo.io</vendor>
 
+	<tags>
+		<tag>script.language</tag>
+	</tags>
+
 	<resource-bundle>messages.BatchBundle</resource-bundle>
 
 	<extensions defaultExtensionNs="com.intellij">
