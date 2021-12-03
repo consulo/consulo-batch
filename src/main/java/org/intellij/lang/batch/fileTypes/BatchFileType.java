@@ -1,14 +1,12 @@
 package org.intellij.lang.batch.fileTypes;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
+import com.intellij.openapi.fileTypes.LanguageFileType;
 import consulo.batch.icon.BatchIconGroup;
+import consulo.ui.image.Image;
 import org.intellij.lang.batch.BatchLanguage;
 import org.intellij.lang.batch.util.BatchBundle;
-import org.jetbrains.annotations.NonNls;
-import com.intellij.openapi.fileTypes.LanguageFileType;
-import consulo.ui.image.Image;
+
+import javax.annotation.Nonnull;
 
 /**
  * Batch file type.
@@ -26,7 +24,6 @@ public final class BatchFileType extends LanguageFileType
 
 	@Override
 	@Nonnull
-	@NonNls
 	public String getDefaultExtension()
 	{
 		return "bat";
@@ -40,7 +37,7 @@ public final class BatchFileType extends LanguageFileType
 	}
 
 	@Override
-	@Nullable
+	@Nonnull
 	public Image getIcon()
 	{
 		return BatchIconGroup.batch();
@@ -48,7 +45,6 @@ public final class BatchFileType extends LanguageFileType
 
 	@Override
 	@Nonnull
-	@NonNls
 	public String getId()
 	{
 		return "Batch";
