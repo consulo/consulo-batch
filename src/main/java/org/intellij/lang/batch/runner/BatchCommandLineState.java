@@ -42,6 +42,8 @@ public class BatchCommandLineState extends CommandLineState
 		commandLine.setExePath(runConfiguration.getInterpreterPath());
 		commandLine.getParametersList().addParametersString("/c");
 		commandLine.getParametersList().addParametersString(runConfiguration.getInterpreterOptions());
+
+		String parentPath = getEnvironment().getProject().getBasePath();
 		if(!StringUtil.isEmptyOrSpaces(runConfiguration.getScriptName()))
 		{
 			commandLine.addParameter(runConfiguration.getScriptName());
@@ -52,6 +54,12 @@ public class BatchCommandLineState extends CommandLineState
 				Charset charset = scriptFile.getCharset();
 
 				commandLine.setCharset(charset);
+
+				VirtualFile parent = scriptFile.getParent();
+				if(parent != null)
+				{
+					parentPath = parent.getPresentableUrl();
+				}
 			}
 		}
 
@@ -59,6 +67,10 @@ public class BatchCommandLineState extends CommandLineState
 		if(!StringUtil.isEmptyOrSpaces(runConfiguration.getWorkingDirectory()))
 		{
 			commandLine.setWorkDirectory(runConfiguration.getWorkingDirectory());
+		}
+		else
+		{
+			commandLine.setWorkDirectory(parentPath);
 		}
 
 		commandLine.getEnvironment().putAll(runConfiguration.getEnvs());
