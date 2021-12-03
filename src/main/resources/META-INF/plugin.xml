@@ -1,4 +1,4 @@
-<consulo-plugin>
+<consulo-plugin url="https://github.com/consulo/consulo-batch">
 	<id>consulo.batch</id>
 	<name>Batch Scripts Support</name>
 	<category>Custom Languages</category>
