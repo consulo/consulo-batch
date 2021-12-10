@@ -1,0 +1,18 @@
+batch.filetype.description:
+  text: Batch files
+runcfg.labels.script:
+  text: '&Script:'
+runcfg.labels.script_parameters:
+  text: 'Script &parameters:'
+runcfg.labels.environment_variables:
+  text: '&Environment variables:'
+runcfg.labels.working_directory:
+  text: '&Working directory:'
+runcfg.labels.interpreter_options:
+  text: 'Interpreter &options:'
+runcfg.captions.script_parameters_dialog:
+  text: Enter script parameters
+runcfg.captions.interpreter_options_dialog:
+  text: Enter interpreter options
+runcfg.no_script_name:
+  text: Please, specify script name

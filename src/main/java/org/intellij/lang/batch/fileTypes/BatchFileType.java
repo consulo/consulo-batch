@@ -2,9 +2,10 @@ package org.intellij.lang.batch.fileTypes;
 
 import com.intellij.openapi.fileTypes.LanguageFileType;
 import consulo.batch.icon.BatchIconGroup;
+import consulo.batch.localize.BatchLocalize;
+import consulo.localize.LocalizeValue;
 import consulo.ui.image.Image;
 import org.intellij.lang.batch.BatchLanguage;
-import org.intellij.lang.batch.util.BatchBundle;
 
 import javax.annotation.Nonnull;
 
@@ -31,9 +32,9 @@ public final class BatchFileType extends LanguageFileType
 
 	@Override
 	@Nonnull
-	public String getDescription()
+	public LocalizeValue getDescription()
 	{
-		return BatchBundle.message("batch.filetype.description");
+		return BatchLocalize.batchFiletypeDescription();
 	}
 
 	@Override

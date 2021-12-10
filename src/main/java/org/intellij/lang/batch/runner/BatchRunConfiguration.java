@@ -1,27 +1,10 @@
 package org.intellij.lang.batch.runner;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Nonnull;
-
-import org.intellij.lang.batch.util.BatchBundle;
-import org.jdom.Element;
 import com.intellij.compiler.options.CompileStepBeforeRun;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.Executor;
 import com.intellij.execution.configuration.EnvironmentVariablesComponent;
-import com.intellij.execution.configurations.ConfigurationFactory;
-import com.intellij.execution.configurations.ModuleBasedConfiguration;
-import com.intellij.execution.configurations.RunConfiguration;
-import com.intellij.execution.configurations.RunConfigurationModule;
-import com.intellij.execution.configurations.RunProfileState;
-import com.intellij.execution.configurations.RuntimeConfigurationException;
+import com.intellij.execution.configurations.*;
 import com.intellij.execution.filters.TextConsoleBuilderFactory;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.openapi.module.Module;
@@ -32,6 +15,12 @@ import com.intellij.openapi.util.InvalidDataException;
 import com.intellij.openapi.util.JDOMExternalizerUtil;
 import com.intellij.openapi.util.WriteExternalException;
 import com.intellij.openapi.util.text.StringUtil;
+import consulo.batch.localize.BatchLocalize;
+import org.jdom.Element;
+
+import javax.annotation.Nonnull;
+import java.io.File;
+import java.util.*;
 
 /**
  * @author wibotwi
@@ -95,7 +84,7 @@ public class BatchRunConfiguration extends ModuleBasedConfiguration<RunConfigura
 		super.checkConfiguration();
 		if(StringUtil.isEmptyOrSpaces(scriptName))
 		{
-			throw new RuntimeConfigurationException(BatchBundle.message("runcfg.no_script_name"));
+			throw new RuntimeConfigurationException(BatchLocalize.runcfgNo_script_name().get());
 		}
 	}
 
