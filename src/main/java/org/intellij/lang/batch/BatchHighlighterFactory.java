@@ -1,10 +1,10 @@
 package org.intellij.lang.batch;
 
-import javax.annotation.Nonnull;
-
+import consulo.language.editor.highlight.SingleLazyInstanceSyntaxHighlighterFactory;
+import consulo.language.editor.highlight.SyntaxHighlighter;
 import org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter;
-import com.intellij.openapi.fileTypes.SingleLazyInstanceSyntaxHighlighterFactory;
-import com.intellij.openapi.fileTypes.SyntaxHighlighter;
+
+import javax.annotation.Nonnull;
 
 public class BatchHighlighterFactory extends SingleLazyInstanceSyntaxHighlighterFactory
 {

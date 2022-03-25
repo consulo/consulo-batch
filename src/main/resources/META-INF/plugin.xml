@@ -11,7 +11,7 @@
 
 	<resource-bundle>messages.BatchBundle</resource-bundle>
 
-	<extensions defaultExtensionNs="com.intellij">
+	<extensions defaultExtensionNs="consulo">
 		<fileTypeFactory implementation="org.intellij.lang.batch.fileTypes.BatchFileTypeFactory"/>
 
 		<!--Syntax highlighting-->

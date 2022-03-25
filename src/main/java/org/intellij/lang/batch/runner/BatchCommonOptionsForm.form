@@ -16,7 +16,7 @@
           <text resource-bundle="messages/BatchBundle" key="runcfg.labels.working_directory"/>
         </properties>
       </component>
-      <component id="133ab" class="com.intellij.openapi.ui.TextFieldWithBrowseButton" binding="workingDirectoryField">
+      <component id="133ab" class="consulo.ui.ex.awt.TextFieldWithBrowseButton" binding="workingDirectoryField">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <minimum-size width="150" height="-1"/>
@@ -24,7 +24,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="9aa02" class="com.intellij.execution.configuration.EnvironmentVariablesComponent" binding="envsField">
+      <component id="9aa02" class="consulo.execution.ui.awt.EnvironmentVariablesComponent" binding="envsField">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -40,7 +40,7 @@
           <text resource-bundle="messages/BatchBundle" key="runcfg.labels.interpreter_options"/>
         </properties>
       </component>
-      <component id="f5fc2" class="com.intellij.ui.RawCommandLineEditor" binding="interpreterOptionsField">
+      <component id="f5fc2" class="consulo.execution.ui.awt.RawCommandLineEditor" binding="interpreterOptionsField">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <minimum-size width="150" height="-1"/>

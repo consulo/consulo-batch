@@ -1,12 +1,12 @@
 package org.intellij.lang.batch.editor.colors;
 
-import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.editor.colors.TextAttributesKey;
-import com.intellij.openapi.fileTypes.SyntaxHighlighter;
-import com.intellij.openapi.options.colors.AttributesDescriptor;
-import com.intellij.openapi.options.colors.ColorDescriptor;
-import com.intellij.openapi.options.colors.ColorSettingsPage;
-import com.intellij.openapi.util.io.FileUtil;
+import consulo.colorScheme.TextAttributesKey;
+import consulo.colorScheme.setting.AttributesDescriptor;
+import consulo.colorScheme.setting.ColorDescriptor;
+import consulo.language.editor.colorScheme.setting.ColorSettingsPage;
+import consulo.language.editor.highlight.SyntaxHighlighter;
+import consulo.logging.Logger;
+import consulo.util.io.FileUtil;
 import org.intellij.lang.batch.editor.BatchHighlighterColors;
 import org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter;
 import org.jetbrains.annotations.NonNls;

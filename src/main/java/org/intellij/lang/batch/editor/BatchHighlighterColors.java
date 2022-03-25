@@ -1,9 +1,9 @@
 package org.intellij.lang.batch.editor;
 
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
-import com.intellij.openapi.editor.HighlighterColors;
-import com.intellij.openapi.editor.colors.TextAttributesKey;
-import com.intellij.openapi.editor.markup.TextAttributes;
+import consulo.codeEditor.HighlighterColors;
+import consulo.colorScheme.TextAttributes;
+import consulo.colorScheme.TextAttributesKey;
+import consulo.language.editor.DefaultLanguageHighlighterColors;
 import consulo.ui.color.RGBColor;
 import consulo.ui.style.StandardColors;
 

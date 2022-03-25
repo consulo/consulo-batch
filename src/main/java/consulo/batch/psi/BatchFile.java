@@ -16,13 +16,11 @@
 
 package consulo.batch.psi;
 
-import javax.annotation.Nonnull;
-
+import consulo.language.file.FileViewProvider;
+import consulo.language.impl.psi.PsiFileBase;
 import org.intellij.lang.batch.BatchLanguage;
-import org.intellij.lang.batch.fileTypes.BatchFileType;
-import com.intellij.extapi.psi.PsiFileBase;
-import com.intellij.openapi.fileTypes.FileType;
-import com.intellij.psi.FileViewProvider;
+
+import javax.annotation.Nonnull;
 
 /**
  * @author VISTALL
@@ -33,12 +31,5 @@ public class BatchFile extends PsiFileBase
 	public BatchFile(@Nonnull FileViewProvider viewProvider)
 	{
 		super(viewProvider, BatchLanguage.INSTANCE);
-	}
-
-	@Nonnull
-	@Override
-	public FileType getFileType()
-	{
-		return BatchFileType.INSTANCE;
 	}
 }

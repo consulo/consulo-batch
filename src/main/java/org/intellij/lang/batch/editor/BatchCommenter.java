@@ -1,10 +1,11 @@
 package org.intellij.lang.batch.editor;
 
+import consulo.language.CodeDocumentationAwareCommenter;
+import consulo.language.ast.IElementType;
+import consulo.language.psi.PsiComment;
 import org.intellij.lang.batch.BatchTokenTypes;
+
 import javax.annotation.Nullable;
-import com.intellij.lang.CodeDocumentationAwareCommenter;
-import com.intellij.psi.PsiComment;
-import com.intellij.psi.tree.IElementType;
 
 /**
  * @author wibotwi

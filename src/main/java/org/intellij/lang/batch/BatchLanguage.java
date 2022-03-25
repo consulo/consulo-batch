@@ -1,6 +1,6 @@
 package org.intellij.lang.batch;
 
-import com.intellij.lang.Language;
+import consulo.language.Language;
 
 /**
  * Batch language.

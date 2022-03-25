@@ -1,9 +1,9 @@
 package org.intellij.lang.batch.runner;
 
-import com.intellij.openapi.options.ConfigurationException;
-import com.intellij.openapi.options.SettingsEditor;
-import javax.annotation.Nonnull;
+import consulo.configurable.ConfigurationException;
+import consulo.execution.configuration.ui.SettingsEditor;
 
+import javax.annotation.Nonnull;
 import javax.swing.*;
 
 /**
@@ -11,7 +11,6 @@ import javax.swing.*;
  */
 public class BatchRunConfigurationEditor extends SettingsEditor<BatchRunConfiguration>
 {
-
 	private BatchRunConfigurationForm myForm;
 
 	public BatchRunConfigurationEditor(BatchRunConfiguration batchRunConfiguration)

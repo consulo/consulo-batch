@@ -1,7 +1,7 @@
 package org.intellij.lang.batch.lexer;
 
-import com.intellij.lexer.LexerBase;
-import com.intellij.psi.tree.IElementType;
+import consulo.language.lexer.LexerBase;
+import consulo.language.ast.IElementType;
 import org.intellij.lang.batch.BatchTokenTypes;
 
 %%
