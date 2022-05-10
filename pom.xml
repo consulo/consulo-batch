@@ -19,7 +19,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>consulo</groupId>
-		<artifactId>arch.ide-provided</artifactId>
+		<artifactId>arch.ide-api-provided</artifactId>
 		<version>3-SNAPSHOT</version>
 		<relativePath/>
 	</parent>
@@ -79,6 +79,7 @@
 		<dependency>
 			<groupId>consulo.internal</groupId>
 			<artifactId>forms_rt</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>
