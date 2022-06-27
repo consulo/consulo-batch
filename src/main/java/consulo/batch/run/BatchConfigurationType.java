@@ -19,10 +19,7 @@ package consulo.batch.run;
 import consulo.annotation.component.ExtensionImpl;
 import consulo.application.Application;
 import consulo.batch.icon.BatchIconGroup;
-import consulo.execution.configuration.ConfigurationFactory;
-import consulo.execution.configuration.ConfigurationTypeBase;
-import consulo.execution.configuration.RunConfiguration;
-import consulo.execution.configuration.RunConfigurationModule;
+import consulo.execution.configuration.*;
 import consulo.project.Project;
 import org.intellij.lang.batch.runner.BatchRunConfiguration;
 
@@ -50,7 +47,7 @@ public class BatchConfigurationType extends ConfigurationTypeBase
 	@Nonnull
 	public static BatchConfigurationType getInstance()
 	{
-		return Application.get().getExtensionPoint(BatchConfigurationType.class).findExtensionOrFail(BatchConfigurationType.class);
+		return Application.get().getExtensionPoint(ConfigurationType.class).findExtensionOrFail(BatchConfigurationType.class);
 	}
 
 	public BatchConfigurationType()
