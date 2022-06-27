@@ -16,6 +16,8 @@
 
 package consulo.batch.psi;
 
+import consulo.annotation.component.ExtensionImpl;
+import consulo.language.Language;
 import consulo.language.ast.ASTNode;
 import consulo.language.ast.IElementType;
 import consulo.language.ast.IFileElementType;
@@ -39,9 +41,17 @@ import javax.annotation.Nonnull;
  * @author VISTALL
  * @since 09.01.15
  */
+@ExtensionImpl
 public class BatchParsingDefinition implements ParserDefinition
 {
 	private static final IFileElementType FILE_ELEMENT_TYPE = new IFileElementType("BATCH_FILE", BatchLanguage.INSTANCE);
+
+	@Nonnull
+	@Override
+	public Language getLanguage()
+	{
+		return BatchLanguage.INSTANCE;
+	}
 
 	@Nonnull
 	@Override

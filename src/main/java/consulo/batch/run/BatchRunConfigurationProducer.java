@@ -16,6 +16,7 @@
 
 package consulo.batch.run;
 
+import consulo.annotation.component.ExtensionImpl;
 import consulo.execution.action.ConfigurationContext;
 import consulo.execution.action.RunConfigurationProducer;
 import consulo.language.psi.PsiElement;
@@ -35,6 +36,7 @@ import javax.annotation.Nullable;
  * @author VISTALL
  * @since 09.01.15
  */
+@ExtensionImpl
 public class BatchRunConfigurationProducer extends RunConfigurationProducer<BatchRunConfiguration>
 {
 	public BatchRunConfigurationProducer()

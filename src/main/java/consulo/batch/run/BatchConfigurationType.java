@@ -16,6 +16,8 @@
 
 package consulo.batch.run;
 
+import consulo.annotation.component.ExtensionImpl;
+import consulo.application.Application;
 import consulo.batch.icon.BatchIconGroup;
 import consulo.execution.configuration.ConfigurationFactory;
 import consulo.execution.configuration.ConfigurationTypeBase;
@@ -28,6 +30,7 @@ import javax.annotation.Nonnull;
 /**
  * @author VISTALL
  */
+@ExtensionImpl
 public class BatchConfigurationType extends ConfigurationTypeBase
 {
 	private static class BatchConfigurationFactory extends ConfigurationFactory
@@ -47,7 +50,7 @@ public class BatchConfigurationType extends ConfigurationTypeBase
 	@Nonnull
 	public static BatchConfigurationType getInstance()
 	{
-		return CONFIGURATION_TYPE_EP.findExtension(BatchConfigurationType.class);
+		return Application.get().getExtensionPoint(BatchConfigurationType.class).findExtensionOrFail(BatchConfigurationType.class);
 	}
 
 	public BatchConfigurationType()

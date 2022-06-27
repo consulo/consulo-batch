@@ -1,5 +1,6 @@
 package org.intellij.lang.batch.editor.colors;
 
+import consulo.annotation.component.ExtensionImpl;
 import consulo.colorScheme.TextAttributesKey;
 import consulo.colorScheme.setting.AttributesDescriptor;
 import consulo.colorScheme.setting.ColorDescriptor;
@@ -18,6 +19,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+@ExtensionImpl
 final class BatchColorPage implements ColorSettingsPage
 {
 	@NonNls
