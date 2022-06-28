@@ -8,9 +8,9 @@ import consulo.language.editor.colorScheme.setting.ColorSettingsPage;
 import consulo.language.editor.highlight.SyntaxHighlighter;
 import consulo.logging.Logger;
 import consulo.util.io.FileUtil;
+import consulo.util.lang.lazy.LazyValue;
 import org.intellij.lang.batch.editor.BatchHighlighterColors;
 import org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter;
-import org.jetbrains.annotations.NonNls;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -18,14 +18,14 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Supplier;
 
 @ExtensionImpl
 final class BatchColorPage implements ColorSettingsPage
 {
-	@NonNls
-	private static final String SAMPLE = loadDemo();
+	private static final Supplier<String> SAMPLE = LazyValue.notNull(BatchColorPage::loadDemo);
 
-	private final Set<AttributesDescriptor> attributeDescriptors = new HashSet<AttributesDescriptor>();
+	private final Set<AttributesDescriptor> attributeDescriptors = new HashSet<>();
 
 	public BatchColorPage()
 	{
@@ -63,11 +63,10 @@ final class BatchColorPage implements ColorSettingsPage
 		return ColorDescriptor.EMPTY_ARRAY;
 	}
 
-	@NonNls
 	@Nonnull
 	public String getDemoText()
 	{
-		return SAMPLE;
+		return SAMPLE.get();
 	}
 
 	private static String loadDemo()
@@ -78,7 +77,7 @@ final class BatchColorPage implements ColorSettingsPage
 		}
 		catch(IOException e)
 		{
-			Logger.getInstance(BatchColorPage.class.getName()).error(e);
+			Logger.getInstance(BatchColorPage.class).error(e);
 		}
 		return "";
 	}
