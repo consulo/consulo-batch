@@ -32,7 +32,7 @@
         <border type="none"/>
         <children/>
       </grid>
-      <component id="a2b55" class="com.intellij.ui.RawCommandLineEditor" binding="scriptParametersField">
+      <component id="a2b55" class="consulo.execution.ui.awt.RawCommandLineEditor" binding="scriptParametersField">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <minimum-size width="150" height="-1"/>
@@ -42,7 +42,7 @@
           <dialogCaption resource-bundle="messages/BatchBundle" key="runcfg.captions.script_parameters_dialog"/>
         </properties>
       </component>
-      <component id="265ce" class="com.intellij.openapi.ui.TextFieldWithBrowseButton" binding="scriptNameField">
+      <component id="265ce" class="consulo.ui.ex.awt.TextFieldWithBrowseButton" binding="scriptNameField">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>

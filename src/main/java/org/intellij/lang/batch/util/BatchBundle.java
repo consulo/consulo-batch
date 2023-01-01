@@ -1,7 +1,7 @@
 package org.intellij.lang.batch.util;
 
+import consulo.component.util.localize.AbstractBundle;
 import org.jetbrains.annotations.PropertyKey;
-import com.intellij.AbstractBundle;
 
 public final class BatchBundle extends AbstractBundle
 {

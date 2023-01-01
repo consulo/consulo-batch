@@ -16,24 +16,27 @@
 
 package consulo.batch.run;
 
+import consulo.annotation.component.ExtensionImpl;
+import consulo.execution.action.ConfigurationContext;
+import consulo.execution.action.RunConfigurationProducer;
+import consulo.language.psi.PsiElement;
+import consulo.language.psi.PsiFile;
+import consulo.language.psi.PsiManager;
+import consulo.util.lang.Comparing;
+import consulo.util.lang.ref.Ref;
+import consulo.virtualFileSystem.LocalFileSystem;
+import consulo.virtualFileSystem.VirtualFile;
+import consulo.virtualFileSystem.fileType.FileType;
 import org.intellij.lang.batch.fileTypes.BatchFileType;
 import org.intellij.lang.batch.runner.BatchRunConfiguration;
+
 import javax.annotation.Nullable;
-import com.intellij.execution.actions.ConfigurationContext;
-import com.intellij.execution.actions.RunConfigurationProducer;
-import com.intellij.openapi.fileTypes.FileType;
-import com.intellij.openapi.util.Comparing;
-import com.intellij.openapi.util.Ref;
-import com.intellij.openapi.vfs.LocalFileSystem;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiManager;
 
 /**
  * @author VISTALL
  * @since 09.01.15
  */
+@ExtensionImpl
 public class BatchRunConfigurationProducer extends RunConfigurationProducer<BatchRunConfiguration>
 {
 	public BatchRunConfigurationProducer()

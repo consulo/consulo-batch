@@ -1,15 +1,15 @@
 package org.intellij.lang.batch.runner;
 
-import com.intellij.execution.ExecutionException;
-import com.intellij.execution.configurations.CommandLineState;
-import com.intellij.execution.configurations.GeneralCommandLine;
-import com.intellij.execution.process.OSProcessHandler;
-import com.intellij.execution.process.ProcessHandlerFactory;
-import com.intellij.execution.process.ProcessTerminatedListener;
-import com.intellij.execution.runners.ExecutionEnvironment;
-import com.intellij.openapi.util.text.StringUtil;
-import com.intellij.openapi.vfs.LocalFileSystem;
-import com.intellij.openapi.vfs.VirtualFile;
+import consulo.execution.configuration.CommandLineState;
+import consulo.execution.process.ProcessTerminatedListener;
+import consulo.execution.runner.ExecutionEnvironment;
+import consulo.process.ExecutionException;
+import consulo.process.ProcessHandler;
+import consulo.process.cmd.GeneralCommandLine;
+import consulo.process.local.ProcessHandlerFactory;
+import consulo.util.lang.StringUtil;
+import consulo.virtualFileSystem.LocalFileSystem;
+import consulo.virtualFileSystem.VirtualFile;
 
 import javax.annotation.Nonnull;
 import java.nio.charset.Charset;
@@ -29,9 +29,9 @@ public class BatchCommandLineState extends CommandLineState
 
 	@Nonnull
 	@Override
-	protected OSProcessHandler startProcess() throws ExecutionException
+	protected ProcessHandler startProcess() throws ExecutionException
 	{
-		OSProcessHandler osProcessHandler = ProcessHandlerFactory.getInstance().createProcessHandler(generateCommandLine());
+		ProcessHandler osProcessHandler = ProcessHandlerFactory.getInstance().createProcessHandler(generateCommandLine());
 		ProcessTerminatedListener.attach(osProcessHandler);
 		return osProcessHandler;
 	}

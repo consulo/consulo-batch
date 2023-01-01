@@ -1,17 +1,22 @@
 package org.intellij.lang.batch.editor;
 
+import consulo.annotation.component.ExtensionImpl;
+import consulo.language.CodeDocumentationAwareCommenter;
+import consulo.language.Language;
+import consulo.language.ast.IElementType;
+import consulo.language.psi.PsiComment;
+import org.intellij.lang.batch.BatchLanguage;
 import org.intellij.lang.batch.BatchTokenTypes;
+
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import com.intellij.lang.CodeDocumentationAwareCommenter;
-import com.intellij.psi.PsiComment;
-import com.intellij.psi.tree.IElementType;
 
 /**
  * @author wibotwi
  */
+@ExtensionImpl
 public class BatchCommenter implements CodeDocumentationAwareCommenter
 {
-
 	@Override
 	public IElementType getLineCommentTokenType()
 	{
@@ -84,5 +89,12 @@ public class BatchCommenter implements CodeDocumentationAwareCommenter
 	public String getCommentedBlockCommentSuffix()
 	{
 		return null;
+	}
+
+	@Nonnull
+	@Override
+	public Language getLanguage()
+	{
+		return BatchLanguage.INSTANCE;
 	}
 }

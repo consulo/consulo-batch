@@ -1,8 +1,8 @@
 package org.intellij.lang.batch.fileTypes;
 
-import com.intellij.openapi.fileTypes.LanguageFileType;
 import consulo.batch.icon.BatchIconGroup;
 import consulo.batch.localize.BatchLocalize;
+import consulo.language.file.LanguageFileType;
 import consulo.localize.LocalizeValue;
 import consulo.ui.image.Image;
 import org.intellij.lang.batch.BatchLanguage;

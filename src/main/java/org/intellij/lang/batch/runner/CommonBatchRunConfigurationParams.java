@@ -7,7 +7,6 @@ import java.util.Map;
  */
 public interface CommonBatchRunConfigurationParams
 {
-
 	String getInterpreterOptions();
 
 	void setInterpreterOptions(String options);
@@ -23,5 +22,4 @@ public interface CommonBatchRunConfigurationParams
 	Map<String, String> getEnvs();
 
 	void setEnvs(Map<String, String> envs);
-
 }

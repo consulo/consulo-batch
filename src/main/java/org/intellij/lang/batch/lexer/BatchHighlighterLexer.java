@@ -1,7 +1,7 @@
 package org.intellij.lang.batch.lexer;
 
+import consulo.language.lexer.LayeredLexer;
 import org.intellij.lang.batch.BatchTokenTypes;
-import com.intellij.lexer.LayeredLexer;
 
 /**
  * Lexer adapter.

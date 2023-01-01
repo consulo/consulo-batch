@@ -1,14 +1,15 @@
 package org.intellij.lang.batch.runner;
 
+import consulo.annotation.component.ExtensionImpl;
+import consulo.execution.configuration.RunProfile;
+import consulo.execution.executor.DefaultRunExecutor;
+import consulo.execution.runner.DefaultProgramRunner;
+
 import javax.annotation.Nonnull;
-
-import com.intellij.execution.configurations.RunProfile;
-import com.intellij.execution.executors.DefaultRunExecutor;
-import com.intellij.execution.runners.DefaultProgramRunner;
-
 /**
  * @author wibotwi
  */
+@ExtensionImpl
 public class BatchRunner extends DefaultProgramRunner
 {
 	@Nonnull

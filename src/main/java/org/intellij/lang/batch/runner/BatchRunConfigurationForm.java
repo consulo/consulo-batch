@@ -1,17 +1,12 @@
 package org.intellij.lang.batch.runner;
 
-import com.intellij.ide.util.BrowseFilesListener;
-import com.intellij.openapi.ui.TextFieldWithBrowseButton;
-import com.intellij.openapi.util.io.FileUtil;
-import com.intellij.ui.RawCommandLineEditor;
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
+import consulo.execution.ui.awt.RawCommandLineEditor;
+import consulo.ui.ex.awt.TextFieldWithBrowseButton;
+import consulo.ui.ex.awt.util.BrowseFilesListener;
+import consulo.util.io.FileUtil;
 
 import javax.swing.*;
-
 import java.awt.*;
-import java.util.ResourceBundle;
 
 /**
  * @author wibotwi

@@ -1,8 +1,9 @@
 package org.intellij.lang.batch;
 
+import consulo.language.ast.IElementType;
 import org.jetbrains.annotations.NonNls;
+
 import javax.annotation.Nonnull;
-import com.intellij.psi.tree.IElementType;
 
 public class BatchElementType extends IElementType
 {

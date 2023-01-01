@@ -10,22 +10,4 @@
 	</tags>
 
 	<resource-bundle>messages.BatchBundle</resource-bundle>
-
-	<extensions defaultExtensionNs="com.intellij">
-		<fileTypeFactory implementation="org.intellij.lang.batch.fileTypes.BatchFileTypeFactory"/>
-
-		<!--Syntax highlighting-->
-		<syntaxHighlighter key="Batch" implementationClass="org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter"/>
-		<colorSettingsPage implementation="org.intellij.lang.batch.editor.colors.BatchColorPage"/>
-
-		<!--Language extensions -->
-		<lang.commenter language="Batch" implementationClass="org.intellij.lang.batch.editor.BatchCommenter"/>
-		<lang.parserDefinition language="Batch" implementationClass="consulo.batch.psi.BatchParsingDefinition"/>
-
-		<!-- Run configuration-->
-		<configurationType implementation="consulo.batch.run.BatchConfigurationType"/>
-		<programRunner implementation="org.intellij.lang.batch.runner.BatchRunner"/>
-		<runConfigurationProducer implementation="consulo.batch.run.BatchRunConfigurationProducer"/>
-		<lang.syntaxHighlighterFactory language="Batch" implementationClass="org.intellij.lang.batch.BatchHighlighterFactory" />
-	</extensions>
 </consulo-plugin>
