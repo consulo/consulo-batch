@@ -16,3 +16,7 @@ runcfg.captions.interpreter_options_dialog:
   text: Enter interpreter options
 runcfg.no_script_name:
   text: Please, specify script name
+batch.configuration.name:
+  text: Batch
+batch.configuration.description:
+  text: Batch run configuration
