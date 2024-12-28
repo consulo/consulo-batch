@@ -1,7 +1,7 @@
 package org.intellij.lang.batch.fileTypes;
 
-import consulo.batch.icon.BatchIconGroup;
 import consulo.batch.localize.BatchLocalize;
+import consulo.execution.icon.ExecutionIconGroup;
 import consulo.language.file.LanguageFileType;
 import consulo.localize.LocalizeValue;
 import consulo.ui.image.Image;
@@ -41,7 +41,7 @@ public final class BatchFileType extends LanguageFileType
 	@Nonnull
 	public Image getIcon()
 	{
-		return BatchIconGroup.batch();
+		return ExecutionIconGroup.console();
 	}
 
 	@Override

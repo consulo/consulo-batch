@@ -18,9 +18,9 @@ package consulo.batch.run;
 
 import consulo.annotation.component.ExtensionImpl;
 import consulo.application.Application;
-import consulo.batch.icon.BatchIconGroup;
 import consulo.batch.localize.BatchLocalize;
 import consulo.execution.configuration.*;
+import consulo.execution.icon.ExecutionIconGroup;
 import consulo.project.Project;
 import org.intellij.lang.batch.runner.BatchRunConfiguration;
 
@@ -53,7 +53,7 @@ public class BatchConfigurationType extends ConfigurationTypeBase
 
 	public BatchConfigurationType()
 	{
-		super("BatchConfigurationType", BatchLocalize.batchConfigurationName(), BatchLocalize.batchConfigurationDescription(), BatchIconGroup.batch());
+		super("BatchConfigurationType", BatchLocalize.batchConfigurationName(), BatchLocalize.batchConfigurationDescription(), ExecutionIconGroup.console());
 		addFactory(new BatchConfigurationFactory(this));
 	}
 }
