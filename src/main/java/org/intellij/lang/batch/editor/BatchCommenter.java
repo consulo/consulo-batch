@@ -8,8 +8,8 @@ import consulo.language.psi.PsiComment;
 import org.intellij.lang.batch.BatchLanguage;
 import org.intellij.lang.batch.BatchTokenTypes;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 
 /**
  * @author wibotwi

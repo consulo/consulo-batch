@@ -12,8 +12,8 @@ import consulo.util.lang.lazy.LazyValue;
 import org.intellij.lang.batch.editor.BatchHighlighterColors;
 import org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Map;

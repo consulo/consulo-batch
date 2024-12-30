@@ -24,7 +24,7 @@ import consulo.execution.icon.ExecutionIconGroup;
 import consulo.project.Project;
 import org.intellij.lang.batch.runner.BatchRunConfiguration;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 /**
  * @author VISTALL
  */

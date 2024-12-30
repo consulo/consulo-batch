@@ -8,7 +8,7 @@ import org.intellij.lang.batch.BatchTokenTypes;
 import org.intellij.lang.batch.editor.BatchHighlighterColors;
 import org.intellij.lang.batch.lexer.BatchHighlighterLexer;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -6,7 +6,7 @@ import consulo.language.editor.highlight.SingleLazyInstanceSyntaxHighlighterFact
 import consulo.language.editor.highlight.SyntaxHighlighter;
 import org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 @ExtensionImpl
 public class BatchHighlighterFactory extends SingleLazyInstanceSyntaxHighlighterFactory

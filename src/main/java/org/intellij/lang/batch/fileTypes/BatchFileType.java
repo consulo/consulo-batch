@@ -7,7 +7,7 @@ import consulo.localize.LocalizeValue;
 import consulo.ui.image.Image;
 import org.intellij.lang.batch.BatchLanguage;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * Batch file type.

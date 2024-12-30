@@ -35,7 +35,7 @@ import org.intellij.lang.batch.BatchLanguage;
 import org.intellij.lang.batch.BatchTokenTypes;
 import org.intellij.lang.batch.lexer._BatchLexer;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * @author VISTALL

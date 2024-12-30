@@ -30,7 +30,7 @@ import consulo.virtualFileSystem.fileType.FileType;
 import org.intellij.lang.batch.fileTypes.BatchFileType;
 import org.intellij.lang.batch.runner.BatchRunConfiguration;
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 /**
  * @author VISTALL
