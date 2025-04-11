@@ -23,96 +23,81 @@ import consulo.language.psi.PsiElement;
 import consulo.language.psi.PsiFile;
 import consulo.language.psi.PsiManager;
 import consulo.util.lang.Comparing;
-import consulo.util.lang.ref.Ref;
+import consulo.util.lang.ref.SimpleReference;
 import consulo.virtualFileSystem.LocalFileSystem;
 import consulo.virtualFileSystem.VirtualFile;
 import consulo.virtualFileSystem.fileType.FileType;
+import jakarta.annotation.Nullable;
 import org.intellij.lang.batch.fileTypes.BatchFileType;
 import org.intellij.lang.batch.runner.BatchRunConfiguration;
-
-import jakarta.annotation.Nullable;
 
 /**
  * @author VISTALL
  * @since 09.01.15
  */
 @ExtensionImpl
-public class BatchRunConfigurationProducer extends RunConfigurationProducer<BatchRunConfiguration>
-{
-	public BatchRunConfigurationProducer()
-	{
-		super(BatchConfigurationType.getInstance());
-	}
+public class BatchRunConfigurationProducer extends RunConfigurationProducer<BatchRunConfiguration> {
+    public BatchRunConfigurationProducer() {
+        super(BatchConfigurationType.getInstance());
+    }
 
-	@Override
-	protected boolean setupConfigurationFromContext(BatchRunConfiguration configuration, ConfigurationContext context, Ref<PsiElement> sourceElement)
-	{
-		PsiFile psiFile = getPsiFile(context);
-		if(psiFile != null)
-		{
-			configuration.setScriptName(psiFile.getVirtualFile().getPath());
-			configuration.setName(configuration.suggestedName());
-			configuration.setModule(context.getModule());
+    @Override
+    protected boolean setupConfigurationFromContext(BatchRunConfiguration configuration, ConfigurationContext context, SimpleReference<PsiElement> sourceElement) {
+        PsiFile psiFile = getPsiFile(context);
+        if (psiFile != null) {
+            configuration.setScriptName(psiFile.getVirtualFile().getPath());
+            configuration.setName(configuration.suggestedName());
+            configuration.setModule(context.getModule());
 
-			sourceElement.set(psiFile);
-			return true;
-		}
-		return false;
-	}
+            sourceElement.set(psiFile);
+            return true;
+        }
+        return false;
+    }
 
-	@Override
-	public boolean isConfigurationFromContext(BatchRunConfiguration configuration, ConfigurationContext context)
-	{
-		String scriptName = configuration.getScriptName();
-		if(scriptName == null)
-		{
-			return false;
-		}
+    @Override
+    public boolean isConfigurationFromContext(BatchRunConfiguration configuration, ConfigurationContext context) {
+        String scriptName = configuration.getScriptName();
+        if (scriptName == null) {
+            return false;
+        }
 
-		VirtualFile fileByPath = LocalFileSystem.getInstance().findFileByPath(configuration.getScriptName());
-		if(fileByPath == null)
-		{
-			return false;
-		}
+        VirtualFile fileByPath = LocalFileSystem.getInstance().findFileByPath(configuration.getScriptName());
+        if (fileByPath == null) {
+            return false;
+        }
 
-		PsiManager psiManager = PsiManager.getInstance(context.getProject());
-		PsiFile file = psiManager.findFile(fileByPath);
-		if(file == null || file.getFileType() != BatchFileType.INSTANCE)
-		{
-			return false;
-		}
+        PsiManager psiManager = PsiManager.getInstance(context.getProject());
+        PsiFile file = psiManager.findFile(fileByPath);
+        if (file == null || file.getFileType() != BatchFileType.INSTANCE) {
+            return false;
+        }
 
-		if(!Comparing.equal(configuration.getConfigurationModule().getModule(), context.getModule()))
-		{
-			return false;
-		}
+        if (!Comparing.equal(configuration.getConfigurationModule().getModule(), context.getModule())) {
+            return false;
+        }
 
-		PsiFile psiFile = getPsiFile(context);
-		if(psiFile == null || !psiFile.isEquivalentTo(file))
-		{
-			return false;
-		}
-		return true;
-	}
+        PsiFile psiFile = getPsiFile(context);
+        if (psiFile == null || !psiFile.isEquivalentTo(file)) {
+            return false;
+        }
+        return true;
+    }
 
-	@Nullable
-	private static PsiFile getPsiFile(ConfigurationContext configurationContext)
-	{
-		PsiElement psiLocation = configurationContext.getPsiLocation();
-		if(psiLocation == null)
-		{
-			return null;
-		}
-		PsiFile containingFile = psiLocation.getContainingFile();
-		if(containingFile == null)
-		{
-			return null;
-		}
-		FileType fileType = containingFile.getFileType();
-		if(fileType != BatchFileType.INSTANCE)
-		{
-			return null;
-		}
-		return containingFile;
-	}
+    @Nullable
+    private static PsiFile getPsiFile(ConfigurationContext configurationContext) {
+        PsiElement psiLocation = configurationContext.getPsiLocation();
+        if (psiLocation == null) {
+            return null;
+        }
+        PsiFile containingFile = psiLocation.getContainingFile();
+        if (containingFile == null) {
+            return null;
+        }
+        FileType fileType = containingFile.getFileType();
+        if (fileType != BatchFileType.INSTANCE) {
+            return null;
+        }
+        return containingFile;
+    }
 }
