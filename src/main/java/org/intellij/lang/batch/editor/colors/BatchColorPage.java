@@ -6,9 +6,11 @@ import consulo.colorScheme.setting.AttributesDescriptor;
 import consulo.colorScheme.setting.ColorDescriptor;
 import consulo.language.editor.colorScheme.setting.ColorSettingsPage;
 import consulo.language.editor.highlight.SyntaxHighlighter;
+import consulo.localize.LocalizeValue;
 import consulo.logging.Logger;
 import consulo.util.io.FileUtil;
 import consulo.util.lang.lazy.LazyValue;
+import org.intellij.lang.batch.BatchLanguage;
 import org.intellij.lang.batch.editor.BatchHighlighterColors;
 import org.intellij.lang.batch.fileTypes.BatchSyntaxHighlighter;
 
@@ -83,9 +85,9 @@ final class BatchColorPage implements ColorSettingsPage
 	}
 
 	@Nonnull
-	public String getDisplayName()
+	public LocalizeValue getDisplayName()
 	{
-		return "Batch Script";
+		return BatchLanguage.INSTANCE.getDisplayName();
 	}
 
 	@Nonnull
