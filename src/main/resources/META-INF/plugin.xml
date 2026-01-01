@@ -1,13 +1,13 @@
 <consulo-plugin url="https://github.com/consulo/consulo-batch">
-	<id>consulo.batch</id>
-	<name>Batch Scripts Support</name>
-	<category>Custom Languages</category>
-	<version>SNAPSHOT</version>
-	<vendor>Alexey Efimov &amp; consulo.io</vendor>
+    <id>consulo.batch</id>
+    <name>Batch Scripts</name>
+    <category>Custom Languages</category>
+    <version>SNAPSHOT</version>
+    <vendor>Alexey Efimov &amp; consulo.io</vendor>
 
-	<tags>
-		<tag>script.language</tag>
-	</tags>
+    <tags>
+        <tag>script.language</tag>
+    </tags>
 
-	<resource-bundle>messages.BatchBundle</resource-bundle>
+    <resource-bundle>messages.BatchBundle</resource-bundle>
 </consulo-plugin>
