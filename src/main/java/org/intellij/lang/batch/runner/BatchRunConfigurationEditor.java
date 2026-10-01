@@ -2,44 +2,56 @@ package org.intellij.lang.batch.runner;
 
 import consulo.configurable.ConfigurationException;
 import consulo.execution.configuration.ui.SettingsEditor;
-
-import jakarta.annotation.Nonnull;
-import javax.swing.*;
+import consulo.project.Project;
+import consulo.ui.Component;
+import consulo.ui.annotation.RequiredUIAccess;
+import jakarta.annotation.Nullable;
 
 /**
  * @author wibotwi
  */
-public class BatchRunConfigurationEditor extends SettingsEditor<BatchRunConfiguration>
-{
-	private BatchRunConfigurationForm myForm;
+public class BatchRunConfigurationEditor extends SettingsEditor<BatchRunConfiguration> {
+    private final Project myProject;
 
-	public BatchRunConfigurationEditor(BatchRunConfiguration batchRunConfiguration)
-	{
-		this.myForm = new BatchRunConfigurationForm(batchRunConfiguration);
-	}
+    @Nullable
+    private BatchRunConfigurationForm myForm;
 
-	@Override
-	protected void resetEditorFrom(BatchRunConfiguration runConfiguration)
-	{
-		BatchRunConfiguration.copyParams(runConfiguration, myForm);
-	}
+    public BatchRunConfigurationEditor(BatchRunConfiguration batchRunConfiguration) {
+        myProject = batchRunConfiguration.getProject();
+    }
 
-	@Override
-	protected void applyEditorTo(BatchRunConfiguration runConfiguration) throws ConfigurationException
-	{
-		BatchRunConfiguration.copyParams(myForm, runConfiguration);
-	}
+    @Override
+    @RequiredUIAccess
+    protected void resetEditorFrom(BatchRunConfiguration runConfiguration) {
+        BatchRunConfigurationForm form = myForm;
+        if (form == null) {
+            return;
+        }
 
-	@Override
-	@Nonnull
-	protected JComponent createEditor()
-	{
-		return myForm.getRootPanel();
-	}
+        BatchRunConfiguration.copyParams(runConfiguration, form);
+    }
 
-	@Override
-	protected void disposeEditor()
-	{
-		myForm = null;
-	}
+    @Override
+    @RequiredUIAccess
+    protected void applyEditorTo(BatchRunConfiguration runConfiguration) throws ConfigurationException {
+        BatchRunConfigurationForm form = myForm;
+        if (form == null) {
+            return;
+        }
+
+        BatchRunConfiguration.copyParams(form, runConfiguration);
+    }
+
+    @Override
+    @RequiredUIAccess
+    protected Component createUIComponent() {
+        BatchRunConfigurationForm form = new BatchRunConfigurationForm(myProject, this);
+        myForm = form;
+        return form.getComponent();
+    }
+
+    @Override
+    protected void disposeEditor() {
+        myForm = null;
+    }
 }

@@ -6,7 +6,6 @@ module consulo.batch
 {
 	// TODO remove this dependencies in future
 	requires java.desktop;
-	requires forms.rt;
 
 	requires consulo.application.api;
 	requires consulo.code.editor.api;
@@ -25,7 +24,6 @@ module consulo.batch
 	requires consulo.process.api;
 	requires consulo.project.api;
 	requires consulo.ui.api;
-	requires consulo.ui.ex.awt.api;
 	requires consulo.virtual.file.system.api;
 	requires consulo.util.io;
 	requires consulo.util.lang;

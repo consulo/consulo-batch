@@ -1,60 +1,82 @@
 package org.intellij.lang.batch.runner;
 
-import consulo.execution.ui.awt.RawCommandLineEditor;
-import consulo.ui.ex.awt.TextFieldWithBrowseButton;
-import consulo.ui.ex.awt.util.BrowseFilesListener;
+import consulo.batch.localize.BatchLocalize;
+import consulo.disposer.Disposable;
+import consulo.fileChooser.FileChooserDescriptorFactory;
+import consulo.fileChooser.FileChooserTextBoxBuilder;
+import consulo.platform.base.icon.PlatformIconGroup;
+import consulo.process.cmd.ParametersListUtil;
+import consulo.project.Project;
+import consulo.ui.Component;
+import consulo.ui.TextBoxWithExpandAction;
+import consulo.ui.annotation.RequiredUIAccess;
+import consulo.ui.util.FormBuilder;
 import consulo.util.io.FileUtil;
-
-import javax.swing.*;
-import java.awt.*;
+import consulo.util.lang.StringUtil;
 
 /**
  * @author wibotwi
  */
-public class BatchRunConfigurationForm implements BatchRunConfigurationParams
-{
-	private TextFieldWithBrowseButton scriptNameField;
-	private RawCommandLineEditor scriptParametersField;
-	private JPanel commonOptionsPlaceholder;
-	private JPanel rootPanel;
-	private BatchCommonOptionsForm commonOptionsForm;
+public class BatchRunConfigurationForm implements BatchRunConfigurationParams {
+    private final FileChooserTextBoxBuilder.Controller myScriptNameField;
+    private final TextBoxWithExpandAction myScriptParametersField;
+    private final BatchCommonOptionsForm myCommonOptionsForm;
+    private final Component myComponent;
 
-	public BatchRunConfigurationForm(BatchRunConfiguration runConfiguration)
-	{
-		commonOptionsForm = new BatchCommonOptionsForm(runConfiguration);
-		commonOptionsPlaceholder.add(commonOptionsForm.getRootPanel(), BorderLayout.CENTER);
+    @RequiredUIAccess
+    public BatchRunConfigurationForm(Project project, Disposable uiDisposable) {
+        myScriptNameField = FileChooserTextBoxBuilder.create(project)
+            .dialogTitle(BatchLocalize.runcfgCaptionsSelect_script())
+            .fileChooserDescriptor(FileChooserDescriptorFactory.createSingleFileNoJarsDescriptor())
+            .uiDisposable(uiDisposable)
+            .build();
 
-		scriptNameField.addBrowseFolderListener("Select Script", "", runConfiguration.getProject(), BrowseFilesListener.SINGLE_FILE_DESCRIPTOR);
-	}
+        myScriptParametersField = TextBoxWithExpandAction.create(
+            PlatformIconGroup.actionsShow(),
+            BatchLocalize.runcfgCaptionsScript_parameters_dialog().get(),
+            ParametersListUtil.DEFAULT_LINE_PARSER,
+            ParametersListUtil.DEFAULT_LINE_JOINER
+        );
 
-	public JPanel getRootPanel()
-	{
-		return rootPanel;
-	}
+        myCommonOptionsForm = new BatchCommonOptionsForm(project, uiDisposable);
 
-	public CommonBatchRunConfigurationParams getCommonParams()
-	{
-		return commonOptionsForm;
-	}
+        FormBuilder builder = FormBuilder.create();
+        builder.addLabeled(BatchLocalize.runcfgLabelsScript(), myScriptNameField.getComponent());
+        builder.addLabeled(BatchLocalize.runcfgLabelsScript_parameters(), myScriptParametersField);
+        myCommonOptionsForm.addTo(builder);
+        myComponent = builder.build();
+    }
 
-	public String getScriptName()
-	{
-		return FileUtil.toSystemIndependentName(scriptNameField.getText().trim());
-	}
+    public Component getComponent() {
+        return myComponent;
+    }
 
-	public void setScriptName(String scriptName)
-	{
-		scriptNameField.setText(scriptName);
-	}
+    @Override
+    public CommonBatchRunConfigurationParams getCommonParams() {
+        return myCommonOptionsForm;
+    }
 
-	public String getScriptParameters()
-	{
-		return scriptParametersField.getText().trim();
-	}
+    @Override
+    @RequiredUIAccess
+    public String getScriptName() {
+        return FileUtil.toSystemIndependentName(myScriptNameField.getValue().trim());
+    }
 
-	public void setScriptParameters(String scriptParameters)
-	{
-		scriptParametersField.setText(scriptParameters);
-	}
+    @Override
+    @RequiredUIAccess
+    public void setScriptName(String scriptName) {
+        myScriptNameField.setValue(StringUtil.notNullize(scriptName));
+    }
 
+    @Override
+    @RequiredUIAccess
+    public String getScriptParameters() {
+        return StringUtil.notNullize(myScriptParametersField.getValue()).trim();
+    }
+
+    @Override
+    @RequiredUIAccess
+    public void setScriptParameters(String scriptParameters) {
+        myScriptParametersField.setValue(StringUtil.notNullize(scriptParameters));
+    }
 }

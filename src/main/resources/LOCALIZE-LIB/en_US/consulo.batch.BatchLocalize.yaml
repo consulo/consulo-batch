@@ -14,6 +14,10 @@ runcfg.captions.script_parameters_dialog:
   text: Enter script parameters
 runcfg.captions.interpreter_options_dialog:
   text: Enter interpreter options
+runcfg.captions.select_script:
+  text: Select Script
+runcfg.captions.select_working_directory:
+  text: Select Working Directory
 runcfg.no_script_name:
   text: Please, specify script name
 batch.configuration.name:
