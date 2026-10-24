@@ -2,63 +2,75 @@ package org.intellij.lang.batch.runner;
 
 import consulo.batch.localize.BatchLocalize;
 import consulo.compiler.execution.CompileStepBeforeRun;
+import consulo.execution.CommonProgramRunConfigurationParameters;
 import consulo.execution.RuntimeConfigurationException;
 import consulo.execution.configuration.*;
-import consulo.execution.configuration.ui.SettingsEditor;
+import consulo.execution.configuration.fragment.EnvironmentFragmentState;
+import consulo.execution.configuration.fragment.ProgramParametersFragmentState;
+import consulo.execution.configuration.fragment.RunConfigurationFragment;
+import consulo.execution.configuration.fragment.WorkingDirectoryFragmentState;
 import consulo.execution.executor.Executor;
 import consulo.execution.runner.ExecutionEnvironment;
-import consulo.execution.ui.awt.EnvironmentVariablesComponent;
 import consulo.execution.ui.console.TextConsoleBuilderFactory;
 import consulo.module.Module;
 import consulo.module.ModuleManager;
 import consulo.process.ExecutionException;
 import consulo.util.lang.Comparing;
 import consulo.util.lang.StringUtil;
-import consulo.util.xml.serializer.InvalidDataException;
-import consulo.util.xml.serializer.JDOMExternalizerUtil;
-import consulo.util.xml.serializer.WriteExternalException;
 import jakarta.annotation.Nonnull;
-import org.jdom.Element;
+import org.jspecify.annotations.Nullable;
 
 import java.io.File;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
-/**
- * @author wibotwi
- */
-public class BatchRunConfiguration extends ModuleBasedConfiguration<RunConfigurationModule> implements CommonBatchRunConfigurationParams,
-    BatchRunConfigurationParams, CompileStepBeforeRun.Suppressor {
-
-    // common config
-    private String interpreterOptions = "";
-    private String workingDirectory = "";
-    private boolean passParentEnvs = true;
-    private Map<String, String> envs = new HashMap<String, String>();
-
-    // run config
-    private String scriptName;
-    private String scriptParameters;
+public class BatchRunConfiguration extends ModuleBasedConfiguration<RunConfigurationModule> implements CommonProgramRunConfigurationParameters,
+    CompileStepBeforeRun.Suppressor {
 
     public BatchRunConfiguration(RunConfigurationModule runConfigurationModule, ConfigurationFactory batchConfigurationFactory, String name) {
         super(name, runConfigurationModule, batchConfigurationFactory);
     }
 
     @Override
+    protected Class<BatchRunConfigurationOptions> getOptionsClass() {
+        return BatchRunConfigurationOptions.class;
+    }
+
+    @Override
+    public BatchRunConfigurationOptions getOptions() {
+        return (BatchRunConfigurationOptions) super.getOptions();
+    }
+
+    @Override
+    protected void convertLegacyState(LegacyRunConfigurationConverter converter) {
+        super.convertLegacyState(converter);
+
+        BatchRunConfigurationLegacyState old = converter.readXml(BatchRunConfigurationLegacyState.class);
+
+        BatchRunConfigurationOptions options = new BatchRunConfigurationOptions();
+        options.setScriptName(old.SCRIPT_NAME);
+        options.setInterpreterOptions(old.INTERPRETER_OPTIONS);
+        converter.setOptions(options);
+
+        converter.addFragment(new ProgramParametersFragmentState(old.PARAMETERS));
+        converter.addFragment(new WorkingDirectoryFragmentState(old.WORKING_DIRECTORY));
+        converter.addFragment(new EnvironmentFragmentState(converter.readEnvs(), old.PARENT_ENVS));
+    }
+
+    @Override
+    public List<RunConfigurationFragment<?>> createFragments() {
+        return List.of(new BatchScriptFragment(), new BatchInterpreterOptionsFragment());
+    }
+
+    @Override
     public Collection<Module> getValidModules() {
-        List<Module> modules = new ArrayList<Module>();
-        Module[] allModules = ModuleManager.getInstance(getProject()).getModules();
-        modules.addAll(Arrays.asList(allModules));
-        return modules;
+        return Arrays.asList(ModuleManager.getInstance(getProject()).getModules());
     }
 
     @Override
     protected ModuleBasedConfiguration createInstance() {
         return new BatchRunConfiguration(getConfigurationModule(), getFactory(), getName());
-    }
-
-    @Override
-    public SettingsEditor<? extends RunConfiguration> getConfigurationEditor() {
-        return new BatchRunConfigurationEditor(this);
     }
 
     @Override
@@ -75,7 +87,7 @@ public class BatchRunConfiguration extends ModuleBasedConfiguration<RunConfigura
     @Override
     public void checkConfiguration() throws RuntimeConfigurationException {
         super.checkConfiguration();
-        if (StringUtil.isEmptyOrSpaces(scriptName)) {
+        if (StringUtil.isEmptyOrSpaces(getScriptName())) {
             throw new RuntimeConfigurationException(BatchLocalize.runcfgNo_script_name().get());
         }
     }
@@ -87,7 +99,7 @@ public class BatchRunConfiguration extends ModuleBasedConfiguration<RunConfigura
 
     @Override
     public String suggestedName() {
-        String name = (new File(scriptName)).getName();
+        String name = new File(StringUtil.notNullize(getScriptName())).getName();
         int ind = name.lastIndexOf('.');
         if (ind != -1) {
             return name.substring(0, ind);
@@ -95,121 +107,19 @@ public class BatchRunConfiguration extends ModuleBasedConfiguration<RunConfigura
         return name;
     }
 
-    @Override
-    public void readExternal(Element element) throws InvalidDataException {
-        super.readExternal(element);
-
-        // common config
-        interpreterOptions = JDOMExternalizerUtil.readField(element, "INTERPRETER_OPTIONS");
-        workingDirectory = JDOMExternalizerUtil.readField(element, "WORKING_DIRECTORY");
-        String str = JDOMExternalizerUtil.readField(element, "PARENT_ENVS");
-        if (str != null) {
-            passParentEnvs = Boolean.parseBoolean(str);
-        }
-        EnvironmentVariablesComponent.readExternal(element, envs);
-
-        // ???
-        getConfigurationModule().readExternal(element);
-
-        // run config
-        scriptName = JDOMExternalizerUtil.readField(element, "SCRIPT_NAME");
-        scriptParameters = JDOMExternalizerUtil.readField(element, "PARAMETERS");
+    public @Nullable String getScriptName() {
+        return getOptions().getScriptName();
     }
 
-    @Override
-    public void writeExternal(Element element) throws WriteExternalException {
-        super.writeExternal(element);
-
-        // common config
-        JDOMExternalizerUtil.writeField(element, "INTERPRETER_OPTIONS", interpreterOptions);
-        JDOMExternalizerUtil.writeField(element, "WORKING_DIRECTORY", workingDirectory);
-        JDOMExternalizerUtil.writeField(element, "PARENT_ENVS", Boolean.toString(passParentEnvs));
-        EnvironmentVariablesComponent.writeExternal(element, envs);
-
-        // ???
-        getConfigurationModule().writeExternal(element);
-
-        // run config
-        JDOMExternalizerUtil.writeField(element, "SCRIPT_NAME", scriptName);
-        JDOMExternalizerUtil.writeField(element, "PARAMETERS", scriptParameters);
+    public void setScriptName(@Nullable String scriptName) {
+        getOptions().setScriptName(scriptName);
     }
 
-    public static void copyParams(CommonBatchRunConfigurationParams from, CommonBatchRunConfigurationParams to) {
-        to.setEnvs(new HashMap<String, String>(from.getEnvs()));
-        to.setInterpreterOptions(from.getInterpreterOptions());
-        to.setWorkingDirectory(from.getWorkingDirectory());
-        to.setPassParentEnvs(from.isPassParentEnvs());
+    public @Nullable String getInterpreterOptions() {
+        return getOptions().getInterpreterOptions();
     }
 
-    public static void copyParams(BatchRunConfigurationParams from, BatchRunConfigurationParams to) {
-        copyParams(from.getCommonParams(), to.getCommonParams());
-
-        to.setScriptName(from.getScriptName());
-        to.setScriptParameters(from.getScriptParameters());
-    }
-
-    @Override
-    public String getInterpreterOptions() {
-        return interpreterOptions;
-    }
-
-    @Override
-    public void setInterpreterOptions(String interpreterOptions) {
-        this.interpreterOptions = interpreterOptions;
-    }
-
-    @Override
-    public String getWorkingDirectory() {
-        return workingDirectory;
-    }
-
-    @Override
-    public void setWorkingDirectory(String workingDirectory) {
-        this.workingDirectory = workingDirectory;
-    }
-
-    @Override
-    public boolean isPassParentEnvs() {
-        return passParentEnvs;
-    }
-
-    @Override
-    public void setPassParentEnvs(boolean passParentEnvs) {
-        this.passParentEnvs = passParentEnvs;
-    }
-
-    @Override
-    public Map<String, String> getEnvs() {
-        return envs;
-    }
-
-    @Override
-    public void setEnvs(Map<String, String> envs) {
-        this.envs = envs;
-    }
-
-    @Override
-    public CommonBatchRunConfigurationParams getCommonParams() {
-        return this;
-    }
-
-    @Override
-    public String getScriptName() {
-        return scriptName;
-    }
-
-    @Override
-    public void setScriptName(String scriptName) {
-        this.scriptName = scriptName;
-    }
-
-    @Override
-    public String getScriptParameters() {
-        return scriptParameters;
-    }
-
-    @Override
-    public void setScriptParameters(String scriptParameters) {
-        this.scriptParameters = scriptParameters;
+    public void setInterpreterOptions(@Nullable String interpreterOptions) {
+        getOptions().setInterpreterOptions(interpreterOptions);
     }
 }

@@ -28,4 +28,6 @@ module consulo.batch
 	requires consulo.util.io;
 	requires consulo.util.lang;
 	requires consulo.util.xml.serializer;
+
+	opens org.intellij.lang.batch.runner to consulo.util.xml.serializer, consulo.execution.api;
 }
